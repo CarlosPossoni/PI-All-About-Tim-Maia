@@ -1,0 +1,340 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    text-decoration: none;
+    list-style: none;
+}
+
+body {
+    background-color: black;
+    color: white;
+}
+
+/* HEADER */
+header {
+    height: 7.5vh;
+
+    display: flex;
+    justify-content: center;
+
+    background-color: white;
+}
+
+header .container {
+    width: 80%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    color: black;
+}
+
+.img-logo {
+    margin-top: 6px;
+}
+
+header .list {
+    width: 350px;
+}
+
+header li {
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+
+    letter-spacing: 1.2px;
+    font-size: 20px;
+}
+
+header span {
+    font-size: 25px;
+    padding: .4rem;
+    border-bottom: solid 2px black;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+header span:hover {
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+}
+
+/* SLOGAN E DEFINIÇÃO GERAL DE CARDS */
+.container {
+    margin: 0 auto;
+    width: 80%;
+}
+
+.container .card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 80px;
+
+    width: 100%;
+
+    color: black;
+    background-color: white;
+
+    border-radius: 15px;
+}
+
+.slogan .card .title {
+    font-weight: 400;
+    font-size: 100px;
+}
+
+.sub-title {
+    font-weight: 300;
+    font-size: 60px;
+}
+
+/* ABOUT US */
+.about-us h2 {
+    font-size: 52px;
+}
+
+.text {
+    font-size: 40px;
+    width: 80%;
+
+    text-align: center;
+}
+
+.base {
+    font-size: 30px;
+    font-style: italic;
+}
+
+/* CANTORES */
+.singers .container {
+    display: flex;
+    justify-content: space-around;
+
+}
+
+.singers .singers-title {
+    margin: 50px;
+
+    font-weight: 500;
+    font-size: 80px;
+
+    text-align: center;
+    letter-spacing: 0.065em;
+}
+
+.singers .card-singer {
+    width: 47%;
+    background-color: white;
+    color: black;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.singers .text-singer {
+    padding: 0 45px;
+    font-size: 25px;
+}
+
+.picture-tim-maia {
+    margin: 40px 0;
+    width: 17vw;
+    height: 40vh;
+}
+
+/* Entre em contato */
+.container-forms {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.sub-title-form {
+    margin: 50px;
+    font-size: 30px;
+}
+
+.label {
+    font-size: 25px;
+    margin: 25px;
+}
+
+.input {
+    border-radius: 15px;
+    height: 6vh;
+
+    border: none;
+    font-size: 15px;
+
+    padding: 10px;
+}
+
+textarea {
+    border-radius: 15px;
+    border: none;
+    max-width: 100%;
+    min-width: 100%;
+    max-height: 400px;
+    min-height: 50px;
+    padding: 10px;
+    font-size: 15px;
+}
+
+.btn-form {
+    margin: 25px auto;
+
+    width: 150px;
+    padding: 5px 10px;
+
+    font-size: 20px;
+    border-radius: 15px;
+}
+
+.btn-form:active {
+    background-color: #CECECE;
+}
+
+/* FOOTER */
+footer {
+    background-color: white;
+    color: black;
+}
+
+footer .social {
+    width: 45px;
+}
+
+.container-footer {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.content {
+    display: flex;
+    justify-content: space-around;
+}
+
+.part-content {
+    margin-top: 40px;
+}
+
+.baseboard span {
+    align-self: flex-end;
+}
+
+.baseboard {
+    display: flex;
+    justify-content: space-around;
+}
+
+/* MODAL */
+.login,
+.register {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(0, 0, 0, .5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+.modal-container, .modal-container-register {
+    display: flex;
+    color: black;
+    background-color: white;
+    width: 30%;
+    height: 65%;
+    position: relative;
+    border-radius: 15px;
+    border: solid 6px white;
+    /* transition:  .5s; */
+}
+
+.modal-container-register {
+    height: 80%;
+}
+
+.content-modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+
+.title-modal {
+    align-self: center;
+    font-weight: 400;
+    font-size: 40px;
+}
+
+.content-modal .text {
+    font-weight: 200;
+    font-size: 30px;
+}
+
+.ipt-name,
+.ipt-email,
+.ipt-key {
+    align-self: center;
+    margin: 15px 0;
+}
+
+.input-modal {
+    align-self: center;
+    width: 300px;
+    height: 45px;
+    padding: 10px;
+    background: #E3E3E3;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+    border: none;
+    margin-top: 10px;
+}
+
+.button-login,
+.button-register {
+    width: 150px;
+    height: 40px;
+    background: #E3E3E3;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    border: solid 1px white;
+    align-self: center;
+    margin-top: 25px;
+    font-weight: 400;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.button-login:active {
+    background-color: white;
+}
+
+.close {
+    position: absolute;
+    color: black;
+    cursor: pointer;
+    font-size: 25px;
+    top: 0;
+    right: 0;
+}
+
+/* MOSTRAR O MODAL */
+.login.mostrar {
+    /* ISSO QUER DIZER QUE O CSS ESPERA UM ELEMENTO(DIV) COM UMA CLASSE ASSIM CLASS="LOGIN MOSTRAR" */
+    display: flex;
+}
+
+.register.mostrar {
+    display: flex;
+}
