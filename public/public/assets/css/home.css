@@ -8,28 +8,24 @@
 }
 
 body {
-    background-color: black;
-    color: white;
+    background-color: white;
+    color: rgb(0, 0, 0);
 }
 
 /* HEADER */
 header {
     height: 7.5vh;
-
     display: flex;
     justify-content: center;
-
-    background-color: white;
+    background-color: rgb(0, 0, 0);
 }
 
 header .container {
     width: 80%;
-
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-    color: black;
+    color: rgb(255, 255, 255);
 }
 
 .img-logo {
@@ -53,14 +49,14 @@ header li {
 header span {
     font-size: 25px;
     padding: .4rem;
-    border-bottom: solid 2px black;
+    border-bottom: solid 2px rgb(255, 255, 255);
     cursor: pointer;
     transition: 0.5s;
 }
 
 header span:hover {
-    background-color: black;
-    color: white;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
     border-radius: 10px;
 }
 
@@ -70,19 +66,27 @@ header span:hover {
     width: 80%;
 }
 
-.container .card {
+.slogan .content {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.card {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     margin-top: 80px;
-
     width: 100%;
+    color: rgb(255, 255, 255);
+    background-color: rgb(0, 0, 0);
+}
 
-    color: black;
-    background-color: white;
-
-    border-radius: 15px;
+.mpb,.card-slogan{
+    width: 700px;
+    height: 1000px;
+    margin: 0;
 }
 
 .slogan .card .title {
@@ -92,31 +96,99 @@ header span:hover {
 
 .sub-title {
     font-weight: 300;
-    font-size: 60px;
+    font-size: 40px;
+    text-align: center;
+    padding: 15px;
 }
 
 /* ABOUT US */
 .about-us h2 {
     font-size: 52px;
+    font-weight: 500;
+    text-align: center;
+    margin-top: 40px;
 }
 
-.text {
+.column {
+    display: flex;
+    flex-direction: column;
+}
+
+.about-us .container .text {
     font-size: 40px;
     width: 80%;
-
+    padding: 50px;
     text-align: center;
 }
 
-.base {
+.container-about-us,.container-about-us-2 {
+    display: flex;
+    width: 100%;
+}
+
+.card-about-us,.card-about-us-3 {
+    width: 60%;
+}
+
+.card-about-us-2 {
+    width: 510px;
+    background-color: #fff;
+    color: #000;
+}
+
+.card-about-us-2 h3 {
+    font-size: 52px;
+    margin-left: 55px;
+}
+
+.card-about-us-3 {
+    margin-top: 0;
+    background-color: #fff;
+    color: #000;
+}
+
+.card-about-us-4 {
+    width: 40%;
+    background-color: #000;
+    margin-top: 0;
+}
+
+.vote-about-us {
+    align-self: start;
+    margin-left: 9rem;
+}
+
+.vote {
+    background-color: white;
+    color: #000;
+    border: none;
+    padding: 15px 30px;
+    margin-right: 15px;
+    font-size: 30px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.vote:hover {
+    padding: 25px 35px;
+    margin: 0 0 25px 10px;
+    font-size: 45px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px white;
+    transition: .3s;
+}
+
+.text-base {
     font-size: 30px;
     font-style: italic;
+    margin-top: 20px;
 }
 
 /* CANTORES */
 .singers .container {
     display: flex;
     justify-content: space-around;
-
+    width: 100%;
 }
 
 .singers .singers-title {
@@ -130,11 +202,18 @@ header span:hover {
 }
 
 .singers .card-singer {
-    width: 47%;
-    background-color: white;
-    color: black;
-    border-radius: 15px;
+    width: 50%;
+    padding: 2rem ;
+    background-color: #000;
+    color: #fff;
     text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.card-text {
+    padding-left: 11rem !important;
 }
 
 .singers .text-singer {
@@ -143,10 +222,17 @@ header span:hover {
 }
 
 .picture-tim-maia {
-    margin: 40px 0;
-    width: 17vw;
-    height: 40vh;
+    margin: 40px auto;
+    width: 35vw;
+    height: 70vh;
 }
+
+.text-under-image h2,h3 {
+    margin: 20px auto;
+    font-weight: 400;
+    font-size: 30px;
+}
+
 
 /* Entre em contato */
 .container-forms {
@@ -168,11 +254,10 @@ header span:hover {
 .input {
     border-radius: 15px;
     height: 6vh;
-
     border: none;
     font-size: 15px;
-
     padding: 10px;
+    background-color: #DCDCDC;
 }
 
 textarea {
@@ -184,26 +269,29 @@ textarea {
     min-height: 50px;
     padding: 10px;
     font-size: 15px;
+    background-color: #DCDCDC;
 }
 
 .btn-form {
     margin: 25px auto;
-
     width: 150px;
     padding: 5px 10px;
-
     font-size: 20px;
     border-radius: 15px;
+    border: none;
+    background-color: #DCDCDC;
 }
 
 .btn-form:active {
-    background-color: #CECECE;
+    background-color: #CCCCCC;
+
 }
 
 /* FOOTER */
 footer {
-    background-color: white;
-    color: black;
+    background-color: #000;
+    color: #fff;
+    padding: 40px 0 15px;
 }
 
 footer .social {
@@ -220,8 +308,8 @@ footer .social {
     justify-content: space-around;
 }
 
-.part-content {
-    margin-top: 40px;
+.professional-contact {
+    padding-left: 130px;
 }
 
 .baseboard span {
@@ -261,7 +349,7 @@ footer .social {
 }
 
 .modal-container-register {
-    height: 80%;
+    height: 85%;
 }
 
 .content-modal {
@@ -301,8 +389,7 @@ footer .social {
     margin-top: 10px;
 }
 
-.button-login,
-.button-register {
+.button-modal {
     width: 150px;
     height: 40px;
     background: #E3E3E3;
@@ -316,7 +403,7 @@ footer .social {
     cursor: pointer;
 }
 
-.button-login:active {
+.button-modal:active {
     background-color: white;
 }
 
@@ -337,4 +424,15 @@ footer .social {
 
 .register.mostrar {
     display: flex;
+}
+
+.text-error {
+    align-self: center;
+    color: red;
+    font-size: smaller;
+    display: none;
+}
+
+.text-error-true {
+    display: block;
 }

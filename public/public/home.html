@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="assets/css/home.css">
+    <script src="./js/funcoes.js"></script>
+    <title>All About</title>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <a class="img-logo" href="#"><img src="assets/img/LOGO_Preta.png" alt="Logo"></a>
+            <div class="navbar">
+                <ul class="list">
+                    <li>
+                        <span id="open-login" onclick="showModalLogin()">Login</span>
+                        <span id="open-register" onclick="showModalRegister()">Cadastre-se</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <section class="slogan">
+        <div class="container">
+            <div class="content">
+                <img src="assets/img/mpb.png" class="mpb">
+                <div class="card card-slogan">
+                    <h1 class="title">All</h1>
+                    <h1 class="title title-2">About</h1>
+                    <img src="assets/img/sound.png" alt="Violao-modal">
+                    <h3 class="sub-title">Aprenda o melhor dos cantores do MPB</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-us">
+        <h2>Mais sobre o All About</h2>
+        <div class="container container-about-us">
+            <div class="card card-about-us">
+                <div class="text text-about-us">
+                    <p>O All About foi criado com o intuito de dar mais reconhecimento ao MPB(Música Popular Brasileira)
+                        e
+                        aos cantores do gênero. E foi pensando no gostos dos desenvolvedores que o tema foi proposto.
+                    </p>
+                </div>
+            </div>
+            <div class="card card-about-us-2">
+                <h3>Você sobreviveria sem Música?</h3>
+            </div>
+        </div>
+        <div class="container container-about-us-2">
+            <div class="card card-about-us-3" style="width: 100%;">
+                <div class="text">
+                    <p>”Arte não se trata apenas de lazer ou entreterimento, mas também como uma forma de resistência,
+                        diversidade e liberdade de expressão.”</p>
+                    <p class="text-base">Desconhecido - 2022</p>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="singers">
+        <h2 class="singers-title">Cantores</h2>
+        <div class="container">
+            <div class="card-singer card-text">
+                <h2 class="sub-title">Tim Maia</h2>
+                <div class="text-singer">
+                    <p>Como primeiro cantor a ser apresentado temos o famoso Tim Maia. O artista teve inicio de
+                        carreira
+                        em um banda formada por ele Roberto e Erasmo Carlos.
+                        Mais tarde ele viria a sair da banda para seguir carreira solo, foi quando ele viajou para
+                        os
+                        E.U.A. e teve contato com o Jazz...
+                    </p>
+                </div>
+            </div>
+            <div class="card-singer card-image">
+                <img class="picture-tim-maia" src="assets/img/tim-home.png" alt="Foto Sebastião Rodrigues Maia">
+                <div class="text-under-image">
+                    <h2>Sebastião Rodrigues Maia</h2>
+                    <h3>1942 - 1998</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="forms">
+        <div class="container">
+            <h2 class="sub-title-form">Encontrou algum erro ? Tem alguma segestão ou dúvida? Nos avise!</h2>
+            <div class="container-forms">
+                <span class="label">Nome</span>
+                <input type="text" placeholder="Seu nome aqui" class="input">
+                <span class="label">E-mail</span>
+                <input type="email" placeholder="seu_email@aqui.com" class="input">
+                <span class="label">Menssagem</span>
+                <textarea id="" cols="100" rows="10" placeholder="Sua mensagem aqui"></textarea>
+                <button id="btn-form" class="btn-form">Enviar</button>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="container-footer">
+            <div class="content">
+                <div class="find-us">
+                    <h2>Nos encontre aqui</h2>
+                    <div class="icons">
+                        <a href="https://www.instagram.com/" target="_blank"><img src="assets/img/instagram.png"
+                                alt="Instagram" class="social"></a>
+                        <a href="https://www.facebook.com/" target="_blank"><img src="assets/img/facebook.png"
+                                alt="Facebook" class="social"></a>
+                        <a href="https://twitter.com/" target="_blank"><img src="assets/img/twitter.png" alt="Twitter"
+                                class="social"></a>
+                        <a href="https://www.youtube.com/" target="_blank" class="social"><img
+                                src="assets/img/youtube.png" alt="Youtube" class="social"></a>
+                        <a href="https://www.linkedin.com/" target="_blank" class="social"><img
+                                src="assets/img/linkedin.png" alt="Linkedin" class="social"></a>
+                    </div>
+                </div>
+                <div class="professional-contact">
+                    <h2>Contato Profissional</h2>
+                    <span>allabout_profissional@at.com</span>
+                    <img src="assets/img/email.png" alt="Email">
+                </div>
+                <div class="project">
+                    <h2>Projeto desenvolvido para</h2>
+                    <img src="assets/img/sptech.png" alt="Logo Sptech">
+                </div>
+            </div>
+            <div class="baseboard">
+                <span>Pensado e desenvolvido por Carlos Eduardo </span>
+                <div class="location">
+                    <img src="assets/img/localizacao.png" alt="Icone localização">
+                    <span>São Paulo, Capital</span>
+                </div>
+                <span>Todos os direitos reservados© 2022 All About</span>
+            </div>
+        </div>
+    </footer>
+
+    <div id="modal-login" class="login">
+        <div class="modal-container">
+            <span id="close-modal" class="close" onclick="showModalLogin()">X</span>
+            <div class="content-modal">
+                <h2 class="title-modal">Faça o Login aqui</h2>
+                <div class="ipt-email">
+                    <span class="text">E-mail</span><br>
+                    <input id="emaillogin" type="email" placeholder="seu_email@aqui.com" class="input-modal">
+                </div>
+                <div class="ipt-key">
+                    <span class="text">Senha</span><br>
+                    <input id="keywordlogin" type="password" placeholder="********" class="input-modal">
+                </div>
+                <div id="textErrorLogin" class="text-error">
+                    <span>E-mail ou senha incorretos!</span>
+                </div>
+                <button id="btn-login" class="button-modal">Entrar</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-register" class="register">
+        <div class="modal-container-register">
+            <span id="close-modal" class="close" onclick="showModalRegister()">X</span>
+            <div class="content-modal">
+                <h2 class="title-modal">Cadastre-se</h2>
+                <div class="ipt-name">
+                    <span class="text-modal">Nome</span><br>
+                    <input type="text" placeholder="Seu nome aqui" id="nameRegister" class="input-modal">
+                </div>
+                <div id="textErrorName" class="text-error">
+                    <span>O nome deve ter pelo menos 3 caracteres</span>
+                </div>
+                <div class="ipt-email">
+                    <span class="text-modal">E-mail</span><br>
+                    <input id="emailRegister" type="email" placeholder="seu_email@aqui.com" class="input-modal">
+                </div>
+                <div id="textErrorEmail" class="text-error">
+                    <span>E-mail inválido</span>
+                </div>
+                <div class="ipt-key">
+                    <span class="text-modal">Senha</span><br>
+                    <input id="keywordRegister" type="password" placeholder="********" class="input-modal">
+                </div>
+                <div id="textErrorPass" class="text-error"><span>A senha deve conter no mínimo 8 caracteres</span></div>
+                <div class="ipt-key">
+                    <span class="text-modal">Confirme sua senha</span><br>
+                    <input id="keywordConfirmation" type="password" placeholder="********" class="input-modal">
+                </div>
+                <div id="textErrorPassConf" class="text-error">
+                    <span>As senhas devem ser iguais</span>
+                </div>
+                <button id="btn-register" class="button-modal">Cadastrar</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+
+    function showModalLogin() {
+        var modalLogin = document.getElementById(`modal-login`)
+        modalLogin.classList.toggle(`mostrar`)
+    }
+
+    function showModalRegister() {
+        var modalRegister = document.getElementById(`modal-register`)
+        modalRegister.classList.toggle(`mostrar`)
+    }
+
+    const login = document.getElementById(`btn-login`)
+    login.addEventListener(`click`, entrar)
+
+    const register = document.getElementById(`btn-register`)
+    register.addEventListener(`click`, validationRegister)
+
+    function validationRegister() {
+        var validName = nameRegister.value.length>=3
+        var validEmail = emailRegister.value.indexOf('@') && (emailRegister.value.endsWith(`.com`)|| emailRegister.value.endsWith(`.com.br`))
+        var validPass = (keywordRegister.value).length>=8
+        var validPassConfirmation = validPass != keywordConfirmation.value
+        var error = true
+
+        var errorName = document.getElementById(`textErrorName`)
+        var errorEmail = document.getElementById(`textErrorEmail`)
+        var errorPass = document.getElementById(`textErrorPass`)
+        var errorConf = document.getElementById(`textErrorPassConf`)
+
+        if (validName) {
+            error = false
+            errorName.classList.remove(`text-error-true`)
+        } else {
+            errorName.classList.add(`text-error-true`)
+        }
+
+        if (validEmail) {
+            error = false
+            errorEmail.classList.remove(`text-error-true`)
+        } else {
+            errorEmail.classList.add(`text-error-true`)
+        }
+
+        if (validPass) {
+            error = false
+            errorPass.classList.remove(`text-error-true`)
+        } else {
+            errorPass.classList.add(`text-error-true`)
+        }
+
+        if (validPassConfirmation) {
+            error = false
+            errorConf.classList.remove(`text-error-true`)
+
+        } else {
+            errorConf.classList.add(`text-error-true`)
+        }
+
+        if (error==false) {
+            cadastrar()
+        }
+
+    }
+
+    // CADASTRAR
+    function cadastrar() {
+        aguardar();
+
+        //Recupere o valor da nova input pelo nome do id
+        // Agora vá para o método fetch logo abaixo
+        var nomeVar = nameRegister.value;
+        var emailVar = emailRegister.value;
+        var senhaVar = keywordRegister.value;
+
+        if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "") {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+
+            finalizarAguardar();
+            return false;
+        }
+        else {
+            setInterval(sumirMensagem, 5000)
+        }
+
+        // Enviando o valor da nova input
+        fetch("/usuarios/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                nomeServer: nomeVar,
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                cardErro.style.display = "block";
+
+                mensagem_erro.innerHTML = "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+                setTimeout(() => {
+                    window.location = "login.html";
+                }, "2000")
+                
+                limparFormulario();
+                finalizarAguardar();
+            } else {
+                throw ("Houve um erro ao tentar realizar o cadastro!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            finalizarAguardar();
+        });
+
+        return false;
+    }
+
+    function sumirMensagem() {
+        cardErro.style.display = "none"
+    }
+
+    // ENTRAR
+    function entrar() {
+        aguardar();
+
+        const errorLogin = document.getElementById(`textErrorLogin`)
+
+        var emailVar = emaillogin.value;
+        var senhaVar = keywordlogin.value;
+
+
+        if (emailVar == "" || senhaVar == "") {
+            errorLogin.classList.add(`text-error-true`)
+            finalizarAguardar();
+            return false;
+        }
+        else {
+            setInterval(sumirMensagem, 5000)
+        }
+
+        console.log("FORM LOGIN: ", emailVar);
+        console.log("FORM SENHA: ", senhaVar);
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.ID_USUARIO = json.id;
+
+                    setTimeout(function () {
+                        window.location = "./dashboard/cards.html";
+                    }, 1000); // apenas para exibir o loading
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    finalizarAguardar(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+
+    function sumirMensagem() {
+        cardErro.style.display = "none"
+    }
+
+
+</script>
