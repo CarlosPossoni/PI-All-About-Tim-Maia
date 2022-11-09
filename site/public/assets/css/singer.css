@@ -1,0 +1,147 @@
+/* SESSÃO IMAGEM */
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.container-image,
+.image {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.title {
+    align-self: center;
+    font-size: 8rem;
+    font-weight: 300;
+}
+
+.title-name {
+    align-self: center;
+    margin-top: -700px;
+    color: #1d1f0f;
+    font-size: 9rem;
+
+}
+
+.image {
+    background: url(../img/tim-maia.jpg);
+    background-attachment: fixed;
+    background-size: cover;
+    width: 100%;
+    height: 60rem;
+}
+
+/* SESSÃO BIOGRAFIA */
+.who-was .container .title {
+    font-weight: 400;
+    font-size: 59.2635px;
+    margin: 80px 0 40px;
+}
+
+.bio {
+    text-align: center;
+    font-size: 22px;
+}
+
+.text {
+    margin-bottom: 30px;
+}
+
+/* MÚSICAS */
+.container-songs,
+.container-chart {
+    width: 80%;
+    margin: 0 auto;
+    margin-bottom: 40px;
+    border-radius: 10px;
+    background-color: #000;
+    color: #fff;
+}
+
+.songs .legend-box img {
+    gap: 2rem;
+}
+
+.boxes {
+    display: flex;
+    flex-direction: column;
+}
+
+.container-boxes {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px !important;
+}
+
+.boxes h3 {
+    margin: 20px 0 30px 20px;
+    font-weight: 400;
+    font-size: 22px;
+}
+
+.box-my-music img {
+    border-radius: 10px;
+}
+
+.subtitle {
+    text-align: center;
+}
+
+.legend-box {
+    width: 17rem;
+}
+
+.image-box {
+    width: 100px !important ;
+    border-radius: 10px;
+}
+
+.legend-box img {
+    margin: 0 auto;
+    display: flex;
+}
+
+.box-my-music {
+    margin-bottom: 45px;
+    border-right: solid 2px #fff;
+}
+
+.title-box {
+    width: 70%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.box-my-music-1,
+.box-my-music-2,
+.box-my-music-3,
+.box-my-music-4 {
+    margin-top: 40px !important;
+}
+
+/* VOTAÇÃO */
+.choose-votation {
+    display: flex;
+    width: 30%;
+    margin: 40px !important;
+    margin-top: 40px;
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+}
+
+.button {
+    width: 16rem;
+}
+
+.container-chart {
+    height: 30vh;
+}

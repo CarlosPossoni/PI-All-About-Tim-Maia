@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="assets/img/LOGO_Branca.png" type="image/x-icon">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="assets/css/home.css">
     <script src="./js/funcoes.js"></script>
@@ -17,12 +18,12 @@
 <body>
     <header>
         <div class="container">
-            <a class="img-logo" href="#"><img src="assets/img/LOGO_Preta.png" alt="Logo"></a>
+            <a class="img-logo" href="#"><img src="assets/img/LOGO_Branca.png" alt="Logo"></a>
             <div class="navbar">
                 <ul class="list">
                     <li>
-                        <span id="open-login" onclick="showModalLogin()">Login</span>
-                        <span id="open-register" onclick="showModalRegister()">Cadastre-se</span>
+                        <span id="open-login">Login</span>
+                        <span id="open-register">Cadastre-se</span>
                     </li>
                 </ul>
             </div>
@@ -109,6 +110,7 @@
             </div>
         </div>
     </section>
+    
     <footer>
         <div class="container-footer">
             <div class="content">
@@ -155,11 +157,12 @@
                 <h2 class="title-modal">Faça o Login aqui</h2>
                 <div class="ipt-email">
                     <span class="text">E-mail</span><br>
-                    <input id="emaillogin" type="email" placeholder="seu_email@aqui.com" class="input-modal">
+                    <input id="emaillogin" type="email" placeholder="seu_email@aqui.com" class="input-modal"
+                        maxlength="256">
                 </div>
                 <div class="ipt-key">
                     <span class="text">Senha</span><br>
-                    <input id="keywordlogin" type="password" placeholder="********" class="input-modal">
+                    <input id="keywordlogin" type="password" placeholder="********" class="input-modal" maxlength="64">
                 </div>
                 <div id="textErrorLogin" class="text-error">
                     <span>E-mail ou senha incorretos!</span>
@@ -176,31 +179,37 @@
                 <h2 class="title-modal">Cadastre-se</h2>
                 <div class="ipt-name">
                     <span class="text-modal">Nome</span><br>
-                    <input type="text" placeholder="Seu nome aqui" id="nameRegister" class="input-modal">
+                    <input type="text" placeholder="Seu nome aqui" id="nameRegister" class="input-modal" maxlength="30">
                 </div>
                 <div id="textErrorName" class="text-error">
                     <span>O nome deve ter pelo menos 3 caracteres</span>
                 </div>
                 <div class="ipt-email">
                     <span class="text-modal">E-mail</span><br>
-                    <input id="emailRegister" type="email" placeholder="seu_email@aqui.com" class="input-modal">
+                    <input id="emailRegister" type="email" placeholder="seu_email@aqui.com" class="input-modal"
+                        maxlength="256">
                 </div>
                 <div id="textErrorEmail" class="text-error">
                     <span>E-mail inválido</span>
                 </div>
                 <div class="ipt-key">
                     <span class="text-modal">Senha</span><br>
-                    <input id="keywordRegister" type="password" placeholder="********" class="input-modal">
+                    <input id="keywordRegister" type="password" placeholder="********" class="input-modal"
+                        maxlength="64">
                 </div>
                 <div id="textErrorPass" class="text-error"><span>A senha deve conter no mínimo 8 caracteres</span></div>
                 <div class="ipt-key">
                     <span class="text-modal">Confirme sua senha</span><br>
-                    <input id="keywordConfirmation" type="password" placeholder="********" class="input-modal">
+                    <input id="keywordConfirmation" type="password" placeholder="********" class="input-modal"
+                        maxlength="64">
                 </div>
                 <div id="textErrorPassConf" class="text-error">
                     <span>As senhas devem ser iguais</span>
                 </div>
                 <button id="btn-register" class="button-modal">Cadastrar</button>
+                <div class="load">
+                    <img src="assets/gif/load.gif" class="gif-load">
+                </div>
             </div>
         </div>
     </div>
@@ -209,13 +218,19 @@
 </html>
 <script>
 
+    const openLogin = document.getElementById(`open-login`)
+    openLogin.addEventListener(`click`,showModalLogin)
+
+    const openRegister = document.getElementById(`open-register`)
+    openRegister.addEventListener(`click`,showModalRegister)
+
     function showModalLogin() {
-        var modalLogin = document.getElementById(`modal-login`)
+        const modalLogin = document.getElementById(`modal-login`)
         modalLogin.classList.toggle(`mostrar`)
     }
 
     function showModalRegister() {
-        var modalRegister = document.getElementById(`modal-register`)
+        const modalRegister = document.getElementById(`modal-register`)
         modalRegister.classList.toggle(`mostrar`)
     }
 
@@ -226,11 +241,14 @@
     register.addEventListener(`click`, validationRegister)
 
     function validationRegister() {
-        var validName = nameRegister.value.length>=3
-        var validEmail = emailRegister.value.indexOf('@') && (emailRegister.value.endsWith(`.com`)|| emailRegister.value.endsWith(`.com.br`))
-        var validPass = (keywordRegister.value).length>=8
-        var validPassConfirmation = validPass != keywordConfirmation.value
-        var error = true
+        var validName = nameRegister.value.length >= 3
+        var validEmail = emailRegister.value.indexOf('@') && (emailRegister.value.endsWith(`.com`) || emailRegister.value.endsWith(`.com.br`))
+        var validPass = (keywordRegister.value).length >= 8
+        var validPassConfirmation = keywordConfirmation.value == keywordConfirmation.value
+        var errorValidName = true
+        var errorValidEmail = true
+        var errorValidPass = true
+        var errorValidPassConf = true
 
         var errorName = document.getElementById(`textErrorName`)
         var errorEmail = document.getElementById(`textErrorEmail`)
@@ -238,35 +256,38 @@
         var errorConf = document.getElementById(`textErrorPassConf`)
 
         if (validName) {
-            error = false
+            errorValidName = false
             errorName.classList.remove(`text-error-true`)
         } else {
             errorName.classList.add(`text-error-true`)
+            errorValidName = true
         }
 
         if (validEmail) {
-            error = false
+            errorValidEmail = false
             errorEmail.classList.remove(`text-error-true`)
         } else {
             errorEmail.classList.add(`text-error-true`)
+            errorValidEmail = true
         }
 
         if (validPass) {
-            error = false
+            errorValidPass = false
             errorPass.classList.remove(`text-error-true`)
         } else {
             errorPass.classList.add(`text-error-true`)
+            errorValidPass = true
         }
 
         if (validPassConfirmation) {
-            error = false
+            errorValidPassConf = false
             errorConf.classList.remove(`text-error-true`)
-
         } else {
             errorConf.classList.add(`text-error-true`)
+            errorValidPassConf = true
         }
 
-        if (error==false) {
+        if (errorValidName == false && errorValidEmail == false && errorValidPass == false && errorValidPassConf == false) {
             cadastrar()
         }
 
@@ -274,7 +295,7 @@
 
     // CADASTRAR
     function cadastrar() {
-        aguardar();
+        // aguardar();
 
         //Recupere o valor da nova input pelo nome do id
         // Agora vá para o método fetch logo abaixo
@@ -282,17 +303,7 @@
         var emailVar = emailRegister.value;
         var senhaVar = keywordRegister.value;
 
-        if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "") {
-            cardErro.style.display = "block"
-            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
-
-            finalizarAguardar();
-            return false;
-        }
-        else {
-            setInterval(sumirMensagem, 5000)
-        }
-
+        
         // Enviando o valor da nova input
         fetch("/usuarios/cadastrar", {
             method: "POST",
@@ -311,22 +322,26 @@
             console.log("resposta: ", resposta);
 
             if (resposta.ok) {
-                cardErro.style.display = "block";
+                // cardErro.style.display = "block";
 
-                mensagem_erro.innerHTML = "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+                // mensagem_erro.innerHTML = "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
 
                 setTimeout(() => {
-                    window.location = "login.html";
+                    // window.location = "login.html";
+                    var modalRegister = document.getElementById(`modal-register`)
+                    modalRegister.classList.toggle(`mostrar`)
+                    var modalLogin = document.getElementById(`modal-login`)
+                    modalLogin.classList.toggle(`mostrar`)
                 }, "2000")
-                
+
                 limparFormulario();
-                finalizarAguardar();
+                // finalizarAguardar();
             } else {
                 throw ("Houve um erro ao tentar realizar o cadastro!");
             }
         }).catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
-            finalizarAguardar();
+            // finalizarAguardar();
         });
 
         return false;
@@ -338,7 +353,7 @@
 
     // ENTRAR
     function entrar() {
-        aguardar();
+        // aguardar();
 
         const errorLogin = document.getElementById(`textErrorLogin`)
 
@@ -348,7 +363,7 @@
 
         if (emailVar == "" || senhaVar == "") {
             errorLogin.classList.add(`text-error-true`)
-            finalizarAguardar();
+            // finalizarAguardar();
             return false;
         }
         else {
@@ -382,7 +397,7 @@
                     sessionStorage.ID_USUARIO = json.id;
 
                     setTimeout(function () {
-                        window.location = "./dashboard/cards.html";
+                        window.location = "singer.html";
                     }, 1000); // apenas para exibir o loading
 
                 });
@@ -393,7 +408,7 @@
 
                 resposta.text().then(texto => {
                     console.error(texto);
-                    finalizarAguardar(texto);
+                    // finalizarAguardar(texto);
                 });
             }
 
@@ -405,8 +420,7 @@
     }
 
     function sumirMensagem() {
-        cardErro.style.display = "none"
+        // cardErro.style.display = "none"
     }
-
 
 </script>
