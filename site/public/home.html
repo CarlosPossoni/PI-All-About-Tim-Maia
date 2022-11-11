@@ -47,7 +47,7 @@
     <section class="about-us">
         <h2>Mais sobre o All About</h2>
         <div class="container container-about-us">
-            <div class="card card-about-us">
+            <div id="box-about-us" class="card card-about-us">
                 <div class="text text-about-us">
                     <p>O All About foi criado com o intuito de dar mais reconhecimento ao MPB(Música Popular Brasileira)
                         e
@@ -110,7 +110,7 @@
             </div>
         </div>
     </section>
-    
+
     <footer>
         <div class="container-footer">
             <div class="content">
@@ -207,9 +207,8 @@
                     <span>As senhas devem ser iguais</span>
                 </div>
                 <button id="btn-register" class="button-modal">Cadastrar</button>
-                <div class="load">
-                    <img src="assets/gif/load.gif" class="gif-load">
-                </div>
+                <div id="load" class="load"></div>
+                <div id="return" class="register-sucess"></div>
             </div>
         </div>
     </div>
@@ -219,10 +218,10 @@
 <script>
 
     const openLogin = document.getElementById(`open-login`)
-    openLogin.addEventListener(`click`,showModalLogin)
+    openLogin.addEventListener(`click`, showModalLogin)
 
     const openRegister = document.getElementById(`open-register`)
-    openRegister.addEventListener(`click`,showModalRegister)
+    openRegister.addEventListener(`click`, showModalRegister)
 
     function showModalLogin() {
         const modalLogin = document.getElementById(`modal-login`)
@@ -234,6 +233,17 @@
         modalRegister.classList.toggle(`mostrar`)
     }
 
+    // window.addEventListener(`scroll`,activeAnima)
+    // function activeAnima() {
+    //     boxAboutUs = document.getElementById(`box-about-us`)
+    //     boxAboutUs.classList.add(`animation-left-to-center`, scrollY>300)
+    // }
+
+    // window.addEventListener('scroll', function () {
+    //     var about = document.querySelector('.card-about-us');
+    //     about.classList.add('animation-left-to-center', window.scrollY >300);
+    // })
+
     const login = document.getElementById(`btn-login`)
     login.addEventListener(`click`, entrar)
 
@@ -244,7 +254,7 @@
         var validName = nameRegister.value.length >= 3
         var validEmail = emailRegister.value.indexOf('@') && (emailRegister.value.endsWith(`.com`) || emailRegister.value.endsWith(`.com.br`))
         var validPass = (keywordRegister.value).length >= 8
-        var validPassConfirmation = keywordConfirmation.value == keywordConfirmation.value
+        var validPassConfirmation = keywordRegister.value == keywordConfirmation.value
         var errorValidName = true
         var errorValidEmail = true
         var errorValidPass = true
@@ -295,7 +305,7 @@
 
     // CADASTRAR
     function cadastrar() {
-        // aguardar();
+        aguardar();
 
         //Recupere o valor da nova input pelo nome do id
         // Agora vá para o método fetch logo abaixo
@@ -303,7 +313,7 @@
         var emailVar = emailRegister.value;
         var senhaVar = keywordRegister.value;
 
-        
+
         // Enviando o valor da nova input
         fetch("/usuarios/cadastrar", {
             method: "POST",
@@ -322,9 +332,9 @@
             console.log("resposta: ", resposta);
 
             if (resposta.ok) {
-                // cardErro.style.display = "block";
+                sucess.style.display = "block";
 
-                // mensagem_erro.innerHTML = "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+                sucess.innerHTML = "Cadastro realiado com sucesso! Aguarde redirecionando para tela de login";
 
                 setTimeout(() => {
                     // window.location = "login.html";
@@ -335,13 +345,13 @@
                 }, "2000")
 
                 limparFormulario();
-                // finalizarAguardar();
+                finalizarAguardar();
             } else {
                 throw ("Houve um erro ao tentar realizar o cadastro!");
             }
         }).catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
-            // finalizarAguardar();
+            finalizarAguardar();
         });
 
         return false;
@@ -353,7 +363,7 @@
 
     // ENTRAR
     function entrar() {
-        // aguardar();
+        aguardar();
 
         const errorLogin = document.getElementById(`textErrorLogin`)
 
@@ -363,7 +373,7 @@
 
         if (emailVar == "" || senhaVar == "") {
             errorLogin.classList.add(`text-error-true`)
-            // finalizarAguardar();
+            finalizarAguardar();
             return false;
         }
         else {
@@ -408,7 +418,7 @@
 
                 resposta.text().then(texto => {
                     console.error(texto);
-                    // finalizarAguardar(texto);
+                    finalizarAguardar(texto);
                 });
             }
 
@@ -420,7 +430,7 @@
     }
 
     function sumirMensagem() {
-        // cardErro.style.display = "none"
+        cardErro.style.display = "none"
     }
 
 </script>

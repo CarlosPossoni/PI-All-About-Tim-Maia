@@ -1,15 +1,15 @@
 // sessão
 function validarSessao() {
-    // aguardar();
+    aguardar();
 
     var email = sessionStorage.EMAIL_USUARIO;
     var nome = sessionStorage.NOME_USUARIO;
 
-    var b_usuario = document.getElementById("b_usuario");
+    var name_user = document.getElementById("name_user");
 
     if (email != null && nome != null) {
         // window.alert(`Seja bem-vindo, ${nome}!`);
-        b_usuario.innerHTML = nome;
+        name_user.innerHTML = nome;
 
         // finalizarAguardar();
     } else {
@@ -18,27 +18,27 @@ function validarSessao() {
 }
 
 function limparSessao() {
-    // aguardar();
+    aguardar();
     sessionStorage.clear();
-    // finalizarAguardar();
-    window.location = "../login.html";
+    finalizarAguardar();
+    window.location = "home.html";
 }
 
 // carregamento (loading)
 function aguardar() {
-    var divAguardar = document.getElementById("div_aguardar");
-    divAguardar.style.display = "flex";
+    var divAguardar = document.getElementById("load");
+    divAguardar.style.display = "block";
 }
 
-// function finalizarAguardar(texto) {
-//     var divAguardar = document.getElementById("div_aguardar");
-//     divAguardar.style.display = "none";
+function finalizarAguardar(texto) {
+    var divAguardar = document.getElementById("load");
+    divAguardar.style.display = "none";
 
-//     var divErrosLogin = document.getElementById("div_erros_login");
-//     if (texto) {
-//         divErrosLogin.innerHTML = texto;
-//     }
-// }
+    var returnDiv = document.getElementById("return");
+    if (texto) {
+        returnDiv.innerHTML = texto;
+    }
+}
 
 
 // modal

@@ -178,6 +178,11 @@ header span:hover {
     transition: .3s;
 }
 
+.animation-left-to-center {
+    animation-name: slideTO;
+    animation-duration: 1s;
+}
+
 .text-base {
     font-size: 30px;
     font-style: italic;
@@ -435,4 +440,41 @@ footer .social {
 
 .text-error-true {
     display: block;
+}
+
+/* LOAD */
+.load {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: solid 7px #000;
+    border-top-color: transparent;
+    animation: runLoad 0.45s linear infinite ;
+    margin: 0 auto;
+    margin-top: 2rem;
+    display: none;
+}
+.register-sucess {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 2rem;
+    font-size: 1rem;
+    text-align: center;
+    display: none;
+}
+
+@keyframes slideTO {
+    from {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    to{
+        transform: translateX(0);
+    }
+}
+
+@keyframes runLoad {
+    from {
+        transform: rotate(360deg);
+    }
 }

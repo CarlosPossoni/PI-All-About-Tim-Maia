@@ -1,3 +1,5 @@
+/* HEADER */
+
 /* SESSÃO IMAGEM */
 .container {
     width: 80%;
@@ -98,7 +100,7 @@
 }
 
 .image-box {
-    width: 100px !important ;
+    width: 100px !important;
     border-radius: 10px;
 }
 
@@ -128,9 +130,12 @@
 /* VOTAÇÃO */
 .choose-votation {
     display: flex;
-    width: 30%;
-    margin: 40px !important;
-    margin-top: 40px;
+    width: 40%;
+    padding: 14rem 0 0 5rem !important;
+}
+
+.choose-votation h3 {
+    margin-top: 7rem;
 }
 
 .options {
@@ -139,9 +144,49 @@
 }
 
 .button {
-    width: 16rem;
+    width: 18rem;
+    height: 50px;
+    margin-bottom: 25px;
+    border-radius: 10px;
+    font-weight: 500;
+    font-size: 16px;
+    border: none;
+    transition: 0.3s;
 }
 
+.button:hover {
+    margin-bottom: 30px;
+    box-shadow: 0 0 20px rgb(255,255,255);
+    width: 18.5rem;
+    height: 55px;
+}
+
+.button-1 {
+    background-color: #84a083;
+}
+
+.button-2 {
+    background-color: #F36522;
+}
+
+.button-3 {
+    background-color: #637390;
+}
+
+.button-4 {
+    background-color: #FCE760;
+}
+
+
 .container-chart {
-    height: 30vh;
+    padding-top: 4rem;
+    display: flex;
+    justify-content: space-around;
+    height: 47rem;
+}
+
+.chart-js {
+    transition: 0.3;
+    width: 40rem;
+    display: none;
 }
