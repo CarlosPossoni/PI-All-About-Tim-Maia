@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/easteregg.css">
+    <title>easteregg</title>
+</head>
+
+<body>
+    <div class="score">SCORE:   <span id="points">0</span></div>
+    <div class="container">
+
+        <img src="assets/img/clouds.png" class="cloud">
+        <img src="assets/gif/mario.gif" class="mario">
+        <img src="assets/img/pipe.png" class="pipe">
+
+    </div>
+
+</body>
+
+</html>
+
+<script>
+
+    const mario = document.querySelector(`.mario`)
+    const pipe = document.querySelector(`.pipe`)
+    var points = document.getElementById(`points`)
+    var score = 0
+
+    const jump = function () {
+        mario.classList.add(`jump`)
+        setTimeout(() => {
+            mario.classList.remove(`jump`)
+        }, 500)
+    }
+
+    const loop = setInterval(() => {
+
+        const pipePosition = pipe.offsetLeft
+        const marioPosition = Number(window.getComputedStyle(mario).bottom.replace(`px`,``))
+
+        if (pipePosition <= 130 && pipePosition > 0 && marioPosition < 80) {
+
+            pipe.style.animation = `none`
+            pipe.style.left = `${pipePosition}px`
+            mario.style.animation = `none`
+            mario.style.bottom = `${marioPosition}px`
+
+            mario.src = `assets/img/game-over.png`
+            mario.style.width = `80px`
+            mario.style.marginLeft = `50px`
+            
+            clearInterval(loop)
+
+            // points.innerHTML = `${points}olka`
+
+        } else if (pipePosition <= 130 && pipePosition < 10 && marioPosition > 80) {
+            score++
+            scorePoints = (score/7).toFixed(0)
+            points.innerHTML = `${scorePoints}`
+        }
+
+    }, 10)
+
+    document.addEventListener(`keydown`, jump)
+
+</script>

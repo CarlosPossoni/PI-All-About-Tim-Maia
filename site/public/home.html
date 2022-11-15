@@ -131,8 +131,10 @@
                 </div>
                 <div class="professional-contact">
                     <h2>Contato Profissional</h2>
-                    <span>allabout_profissional@at.com</span>
-                    <img src="assets/img/email.png" alt="Email">
+                    <div class="email">
+                        <span>allabout_profissional@at.com</span>
+                        <a href="easteregg.html" target="_blank"><img src="assets/img/email.png" alt="Email"></a>
+                    </div>
                 </div>
                 <div class="project">
                     <h2>Projeto desenvolvido para</h2>
@@ -168,6 +170,8 @@
                     <span>E-mail ou senha incorretos!</span>
                 </div>
                 <button id="btn-login" class="button-modal">Entrar</button>
+                <div id="load" class="load"></div>
+                <div id="return_div" class="register-sucess"></div>
             </div>
         </div>
     </div>
@@ -206,9 +210,16 @@
                 <div id="textErrorPassConf" class="text-error">
                     <span>As senhas devem ser iguais</span>
                 </div>
+                <div class="ipt-numeric">
+                    <span class="text-modal">Quanto é 2 + 5</span><br>
+                    <input type="number" id="numericConfirmation" class="input-modal">
+                </div>
+                <div id="textErrorNumeric" class="text-error">
+                    <span>Resposta errada</span>
+                </div>
                 <button id="btn-register" class="button-modal">Cadastrar</button>
                 <div id="load" class="load"></div>
-                <div id="return" class="register-sucess"></div>
+                <div id="return_div" class="register-sucess"></div>
             </div>
         </div>
     </div>
@@ -233,11 +244,11 @@
         modalRegister.classList.toggle(`mostrar`)
     }
 
-    // window.addEventListener(`scroll`,activeAnima)
-    // function activeAnima() {
-    //     boxAboutUs = document.getElementById(`box-about-us`)
-    //     boxAboutUs.classList.add(`animation-left-to-center`, scrollY>300)
-    // }
+    window.addEventListener(`scroll`, activeAnima)
+    function activeAnima() {
+        boxAboutUs = document.getElementById(`box-about-us`)
+        boxAboutUs.classList.add(`animation-left-to-center`, scrollY > 1100)
+    }
 
     // window.addEventListener('scroll', function () {
     //     var about = document.querySelector('.card-about-us');
@@ -255,11 +266,14 @@
         var validEmail = emailRegister.value.indexOf('@') && (emailRegister.value.endsWith(`.com`) || emailRegister.value.endsWith(`.com.br`))
         var validPass = (keywordRegister.value).length >= 8
         var validPassConfirmation = keywordRegister.value == keywordConfirmation.value
+        var validNumeric = numericConfirmation.value == 7
+        var errorValidNumeric = true
         var errorValidName = true
         var errorValidEmail = true
         var errorValidPass = true
         var errorValidPassConf = true
 
+        var errorNumeric = document.getElementById(`textErrorNumeric`)
         var errorName = document.getElementById(`textErrorName`)
         var errorEmail = document.getElementById(`textErrorEmail`)
         var errorPass = document.getElementById(`textErrorPass`)
@@ -269,35 +283,43 @@
             errorValidName = false
             errorName.classList.remove(`text-error-true`)
         } else {
-            errorName.classList.add(`text-error-true`)
             errorValidName = true
+            errorName.classList.add(`text-error-true`)
         }
 
         if (validEmail) {
             errorValidEmail = false
             errorEmail.classList.remove(`text-error-true`)
         } else {
-            errorEmail.classList.add(`text-error-true`)
             errorValidEmail = true
+            errorEmail.classList.add(`text-error-true`)
         }
 
         if (validPass) {
             errorValidPass = false
             errorPass.classList.remove(`text-error-true`)
         } else {
-            errorPass.classList.add(`text-error-true`)
             errorValidPass = true
+            errorPass.classList.add(`text-error-true`)
         }
 
         if (validPassConfirmation) {
             errorValidPassConf = false
             errorConf.classList.remove(`text-error-true`)
         } else {
-            errorConf.classList.add(`text-error-true`)
             errorValidPassConf = true
+            errorConf.classList.add(`text-error-true`)
         }
 
-        if (errorValidName == false && errorValidEmail == false && errorValidPass == false && errorValidPassConf == false) {
+        if (validNumeric) {
+            errorValidNumeric = false
+            errorNumeric.classList.remove(`text-error-true`)
+        } else {
+            errorValidNumeric = true
+            errorNumeric.classList.add(`text-error-true`)
+        }
+
+        if (errorValidName == false && errorValidEmail == false && errorValidPass == false && errorValidPassConf == false && errorValidNumeric == false) {
             cadastrar()
         }
 
@@ -332,9 +354,9 @@
             console.log("resposta: ", resposta);
 
             if (resposta.ok) {
-                sucess.style.display = "block";
+                return_div.style.display = "block";
 
-                sucess.innerHTML = "Cadastro realiado com sucesso! Aguarde redirecionando para tela de login";
+                return_div.innerHTML = "Cadastro realiado com sucesso! Aguarde redirecionando para tela de login";
 
                 setTimeout(() => {
                     // window.location = "login.html";

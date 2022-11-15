@@ -152,6 +152,7 @@
     font-size: 16px;
     border: none;
     transition: 0.3s;
+    cursor: pointer;
 }
 
 .button:hover {
@@ -160,6 +161,26 @@
     width: 18.5rem;
     height: 55px;
 }
+
+.button-1:active {
+    background-color: #647963;
+}
+
+.button-2:active {
+    background-color: #b34d1e;
+
+}
+
+.button-3:active {
+    background-color: #4f5b72;
+
+}
+
+.button-4:active {
+    background-color: #c0b047;
+
+}
+
 
 .button-1 {
     background-color: #84a083;

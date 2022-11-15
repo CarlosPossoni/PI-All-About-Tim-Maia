@@ -57,7 +57,6 @@ header span {
 header span:hover {
     background-color: rgb(255, 255, 255);
     color: rgb(0, 0, 0);
-    border-radius: 10px;
 }
 
 /* SLOGAN E DEFINIÇÃO GERAL DE CARDS */
@@ -315,6 +314,13 @@ footer .social {
 
 .professional-contact {
     padding-left: 130px;
+    width: 45vh;
+}
+
+.email {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .baseboard span {
@@ -348,13 +354,13 @@ footer .social {
     width: 30%;
     height: 65%;
     position: relative;
-    border-radius: 15px;
+    border-radius: 10px;
     border: solid 6px white;
     /* transition:  .5s; */
 }
 
 .modal-container-register {
-    height: 85%;
+    height: 90%;
 }
 
 .content-modal {
@@ -377,7 +383,8 @@ footer .social {
 
 .ipt-name,
 .ipt-email,
-.ipt-key {
+.ipt-key,
+.ipt-numeric {
     align-self: center;
     margin: 15px 0;
 }
@@ -419,6 +426,12 @@ footer .social {
     font-size: 25px;
     top: 0;
     right: 0;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 /* MOSTRAR O MODAL */
