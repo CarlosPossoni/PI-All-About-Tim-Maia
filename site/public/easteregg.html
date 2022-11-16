@@ -55,7 +55,9 @@
             
             clearInterval(loop)
 
-            // points.innerHTML = `${points}olka`
+            const reset = setTimeout(() => {
+                window.location = `easteregg.html`
+            },2000)
 
         } else if (pipePosition <= 130 && pipePosition < 10 && marioPosition > 80) {
             score++

@@ -186,10 +186,10 @@
             <div class="choose-votation">
                 <h3>Vote Aqui: </h3>
                 <div class="options">
-                    <button id="music1" class="button button-1">Bom Senso</button>
-                    <button id="music2" class="button button-2">Universo Em Desencanto</button>
-                    <button id="music3" class="button button-3">Imunização Racional</button>
-                    <button id="music4" class="button button-4">Contacto Com o Mundo Racional</button>
+                    <button id="music1" class="button button-1" onclick="obterDadosGrafico(1)">Bom Senso</button>
+                    <button id="music2" class="button button-2" onclick="obterDadosGrafico(2)">Universo Em Desencanto</button>
+                    <button id="music3" class="button button-3" onclick="obterDadosGrafico(3)">Imunização Racional</button>
+                    <button id="music4" class="button button-4" onclick="obterDadosGrafico(4)">Contacto Com o Mundo Racional</button>
                 </div>
             </div>
             <div class="chart-js">
@@ -250,10 +250,10 @@
 
     verificar_autenticacao();
 
-    function alterarTitulo(idAquario) {
-        var tituloAquario = document.getElementById("tituloAquario")
-        tituloAquario.innerHTML = "Últimas medidas de Temperatura e Umidade do <span style='color: #e6005a'>Aquário " + idAquario + "</span>"
-    }
+    // function alterarTitulo(idAquario) {
+    //     var tituloAquario = document.getElementById("tituloAquario")
+    //     tituloAquario.innerHTML = "Últimas medidas de Temperatura e Umidade do <span style='color: #e6005a'>Aquário " + idAquario + "</span>"
+    // }
 
     // O gráfico é construído com três funções:
     // 1. obterDadosGrafico -> Traz dados do Banco de Dados para montar o gráfico da primeira vez
@@ -266,8 +266,8 @@
 
     //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
     //     Para ajustar o "select", ajuste o comando sql em src/models
-    function obterDadosGrafico(idAquario) {
-        alterarTitulo(idAquario)
+    function obterDadosGrafico(voto) {
+        // alterarTitulo(idAquario)
 
         if (proximaAtualizacao != undefined) {
             clearTimeout(proximaAtualizacao);
@@ -367,12 +367,12 @@
         //     document.getElementById('chart'),
         //     config
         // );
-        const ChartJs = new Chart(
+        const chartJs = new Chart(
             document.getElementById('chart'),
             config
         );
 
-        setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
+        // setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
     }
 
 

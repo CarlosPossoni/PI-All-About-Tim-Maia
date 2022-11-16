@@ -431,12 +431,11 @@ footer .social {
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
-    margin: 0;
 }
 
 /* MOSTRAR O MODAL */
 .login.mostrar {
-    /* ISSO QUER DIZER QUE O CSS ESPERA UM ELEMENTO(DIV) COM UMA CLASSE ASSIM CLASS="LOGIN MOSTRAR" */
+    /* ISSO QUER DIZER QUE O CSS ESPERA UM ELEMENTO( UMA DIV) COM UMA CLASSE ASSIM CLASS="LOGIN MOSTRAR" */
     display: flex;
 }
 
