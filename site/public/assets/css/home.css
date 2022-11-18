@@ -46,17 +46,24 @@ header li {
     font-size: 20px;
 }
 
-header span {
+header .options {
     font-size: 25px;
     padding: .4rem;
-    border-bottom: solid 2px rgb(255, 255, 255);
+    /* border-bottom: solid 2px rgb(255, 255, 255); */
     cursor: pointer;
     transition: 0.5s;
+    text-shadow: 0 0 10px rgb(255,255,255);
 }
 
-header span:hover {
+header .options:hover {
     background-color: rgb(255, 255, 255);
     color: rgb(0, 0, 0);
+    box-shadow: none;
+}
+
+.bar {
+    font-size: 25px;
+    padding: .4rem;
 }
 
 /* SLOGAN E DEFINIÇÃO GERAL DE CARDS */

@@ -1,5 +1,16 @@
 /* HEADER */
+header .list {
+    width: 350px;
+}
 
+.content-list {
+    padding: .4rem;
+}
+
+.name_user {
+    font-size: 25px;
+    padding: .4rem;
+}
 /* SESSÃO IMAGEM */
 .container {
     width: 80%;

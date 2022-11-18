@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="assets/img/LOGO_Branca.png" type="image/x-icon">
+    <link rel="shortcut icon" href="assets/img/AT.png" type="image/x-icon">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="assets/css/home.css">
     <link rel="stylesheet" href="assets/css/singer.css">
@@ -24,8 +24,11 @@
             <div class="navbar">
                 <ul class="list">
                     <li>
-                        <span onclick="limparSessao()" id="logout">Sair</span>
-                        <span id="name_user">NomeUsuário</span>
+                        <div class="content-list">
+                            <span class="name_user">Olá, <span id="name_user" class="name_user">NomeUsuário</span> </span>
+                        </div>
+                        <span class="name_user">|</span>
+                        <span onclick="limparSessao()" id="logout" class="options">Sair</span>
                     </li>
                 </ul>
             </div>
@@ -186,10 +189,11 @@
             <div class="choose-votation">
                 <h3>Vote Aqui: </h3>
                 <div class="options">
-                    <button id="music1" class="button button-1" onclick="obterDadosGrafico(1)">Bom Senso</button>
-                    <button id="music2" class="button button-2" onclick="obterDadosGrafico(2)">Universo Em Desencanto</button>
-                    <button id="music3" class="button button-3" onclick="obterDadosGrafico(3)">Imunização Racional</button>
-                    <button id="music4" class="button button-4" onclick="obterDadosGrafico(4)">Contacto Com o Mundo Racional</button>
+                    <button id="music1" class="button button-1" onclick="votar(1)">Bom Senso</button>
+                    <button id="music2" class="button button-2" onclick="votar(2)">Universo Em Desencanto</button>
+                    <button id="music3" class="button button-3" onclick="votar(3)">Imunização Racional</button>
+                    <button id="music4" class="button button-4" onclick="votar(4)">Contacto Com o Mundo
+                        Racional</button>
                 </div>
             </div>
             <div class="chart-js">
@@ -219,7 +223,7 @@
                 <div class="professional-contact">
                     <h2>Contato Profissional</h2>
                     <span>allabout_profissional@at.com</span>
-                    <img src="assets/img/email.png" alt="Email">
+                    <a href="easteregg.html" target="_blank"><img src="assets/img/email.png" alt="Email"></a>
                 </div>
                 <div class="project">
                     <h2>Projeto desenvolvido para</h2>
@@ -273,13 +277,13 @@
             clearTimeout(proximaAtualizacao);
         }
 
-        fetch(`/medidas/ultimas/${idAquario}`, { cache: 'no-store' }).then(function (response) {
+        fetch(`/medidas/ultimas/${id}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                     resposta.reverse();
 
-                    plotarGrafico(resposta, idAquario);
+                    plotarGrafico(resposta, id);
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
@@ -340,7 +344,7 @@
             var registro = resposta[i];
             labels.push(registro.momento_grafico);
             dados.datasets[0].data.push(registro.umidade);
-            dados.datasets[1].data.push(registro.temperatura);
+            // dados.datasets[1].data.push(registro.temperatura);
         }
 
         console.log('----------------------------------------------')
