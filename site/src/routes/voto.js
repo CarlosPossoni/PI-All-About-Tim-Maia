@@ -11,4 +11,8 @@ router.get("/votar/", function (req, res) {
     votoController.buscarVotos(req, res);
 });
 
+router.get("/verificar/:id", function (req, res) {
+    votoController.verificaVoto(req, res);
+});
+
 module.exports = router;

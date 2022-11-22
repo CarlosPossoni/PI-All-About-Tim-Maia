@@ -10,14 +10,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="assets/img/AT.png" type="image/x-icon">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="assets/css/home.css">
+    <link rel="stylesheet" href="assets/css/index.css">
     <link rel="stylesheet" href="assets/css/singer.css">
     <script src="./js/funcoes.js"></script>
 
     <title>All About</title>
 </head>
 
-<body>
+<body onload="verificaVoto(),plotarMusicas()">
     <header>
         <div class="container">
             <a class="img-logo" href="#"><img src="assets/img/LOGO_Branca.png" alt="Logo"></a>
@@ -25,7 +25,8 @@
                 <ul class="list">
                     <li>
                         <div class="content-list">
-                            <span class="name_user">Olá, <span id="name_user" class="name_user">NomeUsuário</span> </span>
+                            <span class="name_user">Olá, <span id="name_user" class="name_user">NomeUsuário</span>
+                            </span>
                         </div>
                         <span class="name_user">|</span>
                         <span onclick="limparSessao()" id="logout" class="options">Sair</span>
@@ -133,7 +134,7 @@
                     <h3>Minha música favortita do Tim Maia</h3>
                     <h3>Qual a sua música favorita de Tim Maia?</h3>
                 </div>
-                <div class="container-boxes">
+                <div id="listMusic" class="container-boxes">
                     <div class="box-my-music">
                         <div class="legend-box">
                             <img src="assets/img/album.png">
@@ -143,42 +144,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="box-music-1">
-                        <div class="legend-box">
-                            <img class="image-box" src="assets/img/album.png">
-                            <div class="subtitle">
-                                <p>Rarional Culture</p>
-                                Álbum: Racional V1 - 1975
-                            </div>
-                        </div>
-                    </div>
-                    <div class="box-music-2">
-                        <div class="legend-box">
-                            <img class="image-box" src="assets/img/album.png">
-                            <div class="subtitle">
-                                <p>Universo Em Densencanto</p>
-                                Álbum: Racional V1 - 1975
-                            </div>
-                        </div>
-                    </div>
-                    <div class="box-music-3">
-                        <div class="legend-box">
-                            <img class="image-box" src="assets/img/album.png">
-                            <div class="subtitle">
-                                <p>Imunização Racional</p>
-                                Álbum: Racional V1 - 1975
-                            </div>
-                        </div>
-                    </div>
-                    <div class="box-music-4">
-                        <div class="legend-box">
-                            <img class="image-box" src="assets/img/album.png">
-                            <div class="subtitle">
-                                <p>Contacto Com o mundo Racional</p>
-                                Álbum: Racional V1 - 1975
-                            </div>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -190,8 +156,10 @@
                 <h3>Vote Aqui: </h3>
                 <div class="options">
                     <button id="music1" class="button button-1" onclick="votar(`Bom Senso`)">Bom Senso</button>
-                    <button id="music2" class="button button-2" onclick="votar(`Universo Em Desencanto`)">Universo Em Desencanto</button>
-                    <button id="music3" class="button button-3" onclick="votar(`Imunização Racional`)">Imunização Racional</button>
+                    <button id="music2" class="button button-2" onclick="votar(`Universo Em Desencanto`)">Universo Em
+                        Desencanto</button>
+                    <button id="music3" class="button button-3" onclick="votar(`Imunização Racional`)">Imunização
+                        Racional</button>
                     <button id="music4" class="button button-4" onclick="votar(`Contacto Com o Mundo
                     Racional`)">Contacto Com o Mundo
                         Racional</button>
@@ -247,18 +215,39 @@
 </html>
 <script>
 
+    var musicas = [{
+        tituloMusica: `Bom Senso`,
+    },
+    {
+        tituloMusica: `Universo Em Densencanto`,
+    },
+    {
+        tituloMusica: `Rarional Culture`,
+    },
+    {
+        tituloMusica: `Imunização Racional`,
+    }]
+
+    function plotarMusicas() {
+
+        for (var index = 0; index < musicas.length; index++) {
+
+            var musica = musicas[index]
+
+            listMusic.innerHTML += `
+            <div class="box-music-${[index]}">
+                <div class="legend-box">
+                    <img class="image-box" src="assets/img/album.png">
+                    <div class="subtitle">
+                        <p>${musica.tituloMusica}</p>
+                        Álbum: Racional V1 - 1975
+                    </div>
+                </div>
+            </div>`;
+        }
+    }
+
     name_user.innerHTML = sessionStorage.NOME_USUARIO;
-
-    let proximaAtualizacao;
-
-    // window.onload = obterDadosGrafico(1);
-
-    // verificar_autenticacao();
-
-    // function alterarTitulo(idAquario) {
-    //     var tituloAquario = document.getElementById("tituloAquario")
-    //     tituloAquario.innerHTML = "Últimas medidas de Temperatura e Umidade do <span style='color: #e6005a'>Aquário " + idAquario + "</span>"
-    // }
 
     // O gráfico é construído com três funções:
     // 1. obterDadosGrafico -> Traz dados do Banco de Dados para montar o gráfico da primeira vez
@@ -272,15 +261,33 @@
     //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
     //     Para ajustar o "select", ajuste o comando sql em src/models
 
+    function verificaVoto() {
+        var id = sessionStorage.ID_USUARIO
+
+        fetch(`/voto/verificar/${id}`, {cache: 'no-store'}).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
+
     function votar(musica) {
         var id = sessionStorage.ID_USUARIO
 
-        fetch(`/voto/votar/${musica}/${id}`,  { 
-            method:"PUT",
+        fetch(`/voto/votar/${musica}/${id}`, {
+            method: "PUT",
             headers: {
                 "Conten-Type": "application/json"
             }
-        ,cache: 'no-store' }).then(function (response) {
+            , cache: 'no-store'
+        }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
@@ -293,7 +300,7 @@
             .catch(function (error) {
                 console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
             });
-    }    
+    }
 
     function obterDadosGrafico() {
 
@@ -339,7 +346,6 @@
         // Inserindo valores recebidos em estrutura para plotar o gráfico
         for (i = 0; i < resposta.length; i++) {
             var registro = resposta[i];
-            labels.push(registro.momento_grafico);
             dados.datasets[0].data.push(registro.quantidade);
             dados.datasets[1].data.push(registro.musica);
         }
@@ -361,63 +367,6 @@
             document.getElementById('chart'),
             config
         );
-
-        // setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
-    }
-
-
-    // Esta função *atualizarGrafico* atualiza o gráfico que foi renderizado na página,
-    // buscando a última medida inserida em tabela contendo as capturas, 
-
-    //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
-    //     Para ajustar o "select", ajuste o comando sql em src/models
-    function atualizarGrafico(idAquario, dados, myChart) {
-
-        fetch(`/medidas/tempo-real/${idAquario}`, { cache: 'no-store' }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (novoRegistro) {
-
-                    console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
-                    console.log(`Dados atuais do gráfico:`);
-                    console.log(dados);
-
-                    document.getElementById("avisoCaptura").innerHTML = ""
-
-                    if (novoRegistro[0].momento_grafico == dados.labels[dados.labels.length - 1]) {
-                        console.log("---------------------------------------------------------------")
-                        console.log("Como não há dados novos para captura, o gráfico não atualizará.")
-                        document.getElementById("avisoCaptura").innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará."
-                        console.log("Horário do novo dado capturado:")
-                        console.log(novoRegistro[0].momento_grafico)
-                        console.log("Horário do último dado capturado:")
-                        console.log(dados.labels[dados.labels.length - 1])
-                        console.log("---------------------------------------------------------------")
-                    } else {
-                        // tirando e colocando valores no gráfico
-                        dados.labels.shift(); // apagar o primeiro
-                        dados.labels.push(novoRegistro[0].momento_grafico); // incluir um novo momento
-
-                        dados.datasets[0].data.shift();  // apagar o primeiro de umidade
-                        dados.datasets[0].data.push(novoRegistro[0].umidade); // incluir uma nova medida de umidade
-
-                        dados.datasets[1].data.shift();  // apagar o primeiro de temperatura
-                        dados.datasets[1].data.push(novoRegistro[0].temperatura); // incluir uma nova medida de temperatura
-
-                        myChart.update();
-                    }
-
-                    // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                    proximaAtualizacao = setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-                // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                proximaAtualizacao = setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
-            }
-        })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-            });
 
     }
 

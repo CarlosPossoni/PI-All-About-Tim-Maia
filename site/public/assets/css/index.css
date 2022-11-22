@@ -358,16 +358,17 @@ footer .social {
     display: flex;
     color: black;
     background-color: white;
-    width: 30%;
+    width: 25%;
     height: 65%;
     position: relative;
     border-radius: 10px;
     border: solid 6px white;
-    /* transition:  .5s; */
 }
 
 .modal-container-register {
-    height: 90%;
+    height: 75%;
+    width: 25% !important;
+    min-width: 20%;
 }
 
 .content-modal {
@@ -390,8 +391,7 @@ footer .social {
 
 .ipt-name,
 .ipt-email,
-.ipt-key,
-.ipt-numeric {
+.ipt-key {
     align-self: center;
     margin: 15px 0;
 }

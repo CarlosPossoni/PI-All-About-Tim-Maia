@@ -14,6 +14,7 @@ function votar(req, res) {
         res.status(500).json(erro.sqlMessage);
     });
 }
+
 function buscarVotos() {
     votoModel.buscarVotos().then(function (resultado) {
         if (resultado.length > 0) {
@@ -30,7 +31,22 @@ function buscarVotos() {
     )
 }
 
+function verificaVoto() {
+    var id = req.params.id
+
+    console.log(`Verificando se já votou`);
+
+    votoModel.verificaVoto(id).then(function (resultado) {
+        res.json(resultado);
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar nos ultimos votos.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 module.exports = {
     votar,
-    buscarVotos
+    buscarVotos,
+    verificaVoto
 }

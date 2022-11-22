@@ -7,7 +7,7 @@ nome varchar(30) not null,
 email varchar(256) unique not null,
 senha varchar(70) not null,
 musicaVotada tinyint,
-	check (musicaVotada in(1,2,3,4))
+jaVotou char(2)
 );
 
 create table if not exists feedback (

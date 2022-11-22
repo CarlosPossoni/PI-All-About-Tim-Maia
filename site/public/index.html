@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="assets/img/AT.png" type="image/x-icon">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="assets/css/home.css">
+    <link rel="stylesheet" href="assets/css/index.css">
     <script src="./js/funcoes.js"></script>
     <title>All About</title>
 </head>
@@ -211,16 +211,9 @@
                 <div id="textErrorPassConf" class="text-error">
                     <span>As senhas devem ser iguais</span>
                 </div>
-                <div class="ipt-numeric">
-                    <span class="text-modal">Quanto é 2 + 5</span><br>
-                    <input type="number" id="numericConfirmation" class="input-modal">
-                </div>
-                <div id="textErrorNumeric" class="text-error">
-                    <span>Resposta errada</span>
-                </div>
                 <button id="btn-register" class="button-modal">Cadastrar</button>
                 <div id="load" class="load"></div>
-                <div id="return_div" class="register-sucess"></div>
+                <div id="back_div" class="register-sucess"></div>
             </div>
         </div>
     </div>
@@ -251,11 +244,6 @@
         boxAboutUs.classList.add(`animation-left-to-center`, scrollY > 1100)
     }
 
-    // window.addEventListener('scroll', function () {
-    //     var about = document.querySelector('.card-about-us');
-    //     about.classList.add('animation-left-to-center', window.scrollY >300);
-    // })
-
     const login = document.getElementById(`btn-login`)
     login.addEventListener(`click`, entrar)
 
@@ -267,14 +255,11 @@
         var validEmail = emailRegister.value.indexOf('@') && (emailRegister.value.endsWith(`.com`) || emailRegister.value.endsWith(`.com.br`))
         var validPass = (keywordRegister.value).length >= 8
         var validPassConfirmation = keywordRegister.value == keywordConfirmation.value
-        var validNumeric = numericConfirmation.value == 7
-        var errorValidNumeric = true
         var errorValidName = true
         var errorValidEmail = true
         var errorValidPass = true
         var errorValidPassConf = true
 
-        var errorNumeric = document.getElementById(`textErrorNumeric`)
         var errorName = document.getElementById(`textErrorName`)
         var errorEmail = document.getElementById(`textErrorEmail`)
         var errorPass = document.getElementById(`textErrorPass`)
@@ -312,79 +297,70 @@
             errorConf.classList.add(`text-error-true`)
         }
 
-        if (validNumeric) {
-            errorValidNumeric = false
-            errorNumeric.classList.remove(`text-error-true`)
-        } else {
-            errorValidNumeric = true
-            errorNumeric.classList.add(`text-error-true`)
-        }
-
-        if (errorValidName == false && errorValidEmail == false && errorValidPass == false && errorValidPassConf == false && errorValidNumeric == false) {
+        if (errorValidName == false && errorValidEmail == false && errorValidPass == false && errorValidPassConf == false) {
             cadastrar()
         }
 
     }
 
-    // CADASTRAR
     function cadastrar() {
-        aguardar();
+    aguardar();
 
-        //Recupere o valor da nova input pelo nome do id
-        // Agora vá para o método fetch logo abaixo
-        var nomeVar = nameRegister.value;
-        var emailVar = emailRegister.value;
-        var senhaVar = keywordRegister.value;
+    //Recupere o valor da nova input pelo nome do id
+    // Agora vá para o método fetch logo abaixo
+    var nomeVar = nameRegister.value;
+    var emailVar = emailRegister.value;
+    var senhaVar = keywordRegister.value;
 
+    // Enviando o valor da nova input
+    fetch("/usuarios/cadastrar", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            // crie um atributo que recebe o valor recuperado aqui
+            // Agora vá para o arquivo routes/usuario.js
+            nomeServer: nomeVar,
+            emailServer: emailVar,
+            senhaServer: senhaVar
+        })
+    }).then(function (resposta) {
 
-        // Enviando o valor da nova input
-        fetch("/usuarios/cadastrar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                // crie um atributo que recebe o valor recuperado aqui
-                // Agora vá para o arquivo routes/usuario.js
-                nomeServer: nomeVar,
-                emailServer: emailVar,
-                senhaServer: senhaVar
-            })
-        }).then(function (resposta) {
+        console.log("resposta: ", resposta);
+        console.log('estou no then do cadastrar!');
 
-            console.log("resposta: ", resposta);
+        if (resposta.ok) {
+            return_div.style.display = "block";
+            console.log('ENTREI NO IF DO THEN');
 
-            if (resposta.ok) {
-                return_div.style.display = "block";
+            return_div.innerHTML = "Cadastro realiado com sucesso! Aguarde redirecionando para tela de login";
 
-                return_div.innerHTML = "Cadastro realiado com sucesso! Aguarde redirecionando para tela de login";
+            setTimeout(() => {
+                console.log('ENTREI NO SETTIMEOUT');
 
-                setTimeout(() => {
-                    // window.location = "login.html";
-                    var modalRegister = document.getElementById(`modal-register`)
-                    modalRegister.classList.toggle(`mostrar`)
-                    var modalLogin = document.getElementById(`modal-login`)
-                    modalLogin.classList.toggle(`mostrar`)
-                }, "2000")
+                const modalRegister = document.getElementById(`modal-register`)
+                modalRegister.classList.toggle(`mostrar`)
 
-                limparFormulario();
-                finalizarAguardar();
-            } else {
-                throw ("Houve um erro ao tentar realizar o cadastro!");
-            }
-        }).catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-            finalizarAguardar();
-        });
+                const modalLogin = document.getElementById(`modal-login`)
+                modalLogin.classList.toggle(`mostrar`)
 
-        return false;
+            }, "2000")
+
+            limparFormulario();
+            // finalizarAguardar();
+        } else {
+            throw ("Houve um erro ao tentar realizar o cadastro!");
+        }
+    }).catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        // finalizarAguardar();
+    });
+
+    return false;
     }
 
-    function sumirMensagem() {
-        cardErro.style.display = "none"
-    }
 
-    // ENTRAR
     function entrar() {
         aguardar();
 
@@ -398,9 +374,6 @@
             errorLogin.classList.add(`text-error-true`)
             finalizarAguardar();
             return false;
-        }
-        else {
-            setInterval(sumirMensagem, 5000)
         }
 
         console.log("FORM LOGIN: ", emailVar);
@@ -450,10 +423,6 @@
         })
 
         return false;
-    }
-
-    function sumirMensagem() {
-        cardErro.style.display = "none"
     }
 
 </script>
