@@ -17,7 +17,7 @@
     <title>All About</title>
 </head>
 
-<body onload="verificaVoto(),plotarMusicas()">
+<body onload="plotarMusicas()">
     <header>
         <div class="container">
             <a class="img-logo" href="#"><img src="assets/img/LOGO_Branca.png" alt="Logo"></a>
@@ -152,7 +152,7 @@
 
     <section class="votation">
         <div class="container-chart">
-            <div class="choose-votation">
+            <div id="optionsMusic" class="choose-votation">
                 <h3>Vote Aqui: </h3>
                 <div class="options">
                     <button id="music1" class="button button-1" onclick="votar(`Bom Senso`)">Bom Senso</button>
@@ -261,22 +261,26 @@
     //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
     //     Para ajustar o "select", ajuste o comando sql em src/models
 
-    function verificaVoto() {
-        var id = sessionStorage.ID_USUARIO
+    // function verificaVoto() {
+    //     var id = sessionStorage.ID_USUARIO
 
-        fetch(`/voto/verificar/${id}`, {cache: 'no-store'}).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (resposta) {
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-            }
-        })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-            });
-    }
+    //     fetch(`/voto/verificar/${id}`, {cache: 'no-store'}).then(function (response) {
+    //         if (response.ok) {
+    //             response.json().then(function (resposta) {
+    //                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+    //                 jaVotou = +resposta[0].jaVotou
+    //                 if (jaVotou = 1) {
+    //                     optionsMusic.style.display = `none`
+    //                 }
+    //             });
+    //         } else {
+    //             console.error('Nenhum dado encontrado ou erro na API');
+    //         }
+    //     })
+    //         .catch(function (error) {
+    //             console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+    //         });
+    // }
 
     function votar(musica) {
         var id = sessionStorage.ID_USUARIO
@@ -304,11 +308,10 @@
 
     function obterDadosGrafico() {
 
-        fetch(`/voto/votar/`, { cache: 'no-store' }).then(function (response) {
+        fetch(`/voto/musicasVotadas/`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-
                     plotarGrafico(resposta);
                 });
             } else {

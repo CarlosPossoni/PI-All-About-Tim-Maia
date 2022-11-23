@@ -9,7 +9,8 @@ function votar(musica,id) {
 }
 
 function buscarVotos() {
-    instruçãoSql = `select count(musicaVotada) as 'quantidade', musicaVotada as 'nome' from usuario;`;
+    instruçãoSql = `select musicaVotada as 'nome', count(musicaVotada) as 'qntVoto' from usuario
+	                group by musicaVotada;`;
     console.log(`EXECUTEI ISSO ${instrucaoSql}`);
     return database.executar(instrucaoSql); 
 }

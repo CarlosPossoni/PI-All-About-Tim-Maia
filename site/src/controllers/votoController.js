@@ -15,7 +15,7 @@ function votar(req, res) {
     });
 }
 
-function buscarVotos() {
+function buscarVotos(req, res) {
     votoModel.buscarVotos().then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
@@ -31,7 +31,7 @@ function buscarVotos() {
     )
 }
 
-function verificaVoto() {
+function verificaVoto(req, res) {
     var id = req.params.id
 
     console.log(`Verificando se já votou`);
