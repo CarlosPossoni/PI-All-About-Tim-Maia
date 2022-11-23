@@ -261,26 +261,26 @@
     //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
     //     Para ajustar o "select", ajuste o comando sql em src/models
 
-    // function verificaVoto() {
-    //     var id = sessionStorage.ID_USUARIO
+    function verificaVoto() {
+        var id = sessionStorage.ID_USUARIO
 
-    //     fetch(`/voto/verificar/${id}`, {cache: 'no-store'}).then(function (response) {
-    //         if (response.ok) {
-    //             response.json().then(function (resposta) {
-    //                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-    //                 jaVotou = +resposta[0].jaVotou
-    //                 if (jaVotou = 1) {
-    //                     optionsMusic.style.display = `none`
-    //                 }
-    //             });
-    //         } else {
-    //             console.error('Nenhum dado encontrado ou erro na API');
-    //         }
-    //     })
-    //         .catch(function (error) {
-    //             console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-    //         });
-    // }
+        fetch(`/voto/verificar/${id}`, {cache: 'no-store'}).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    jaVotou = +resposta[0].jaVotou
+                    if (jaVotou = 1) {
+                        optionsMusic.style.display = `none`
+                    }
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
 
     function votar(musica) {
         var id = sessionStorage.ID_USUARIO

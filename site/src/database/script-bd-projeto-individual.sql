@@ -7,7 +7,11 @@ nome varchar(30) not null,
 email varchar(256) unique not null,
 senha varchar(70) not null,
 musicaVotada varchar(45),
+<<<<<<< HEAD
 jaVotou char(1) default 0
+=======
+jaVotou char(2)
+>>>>>>> 4ecb3bcce006ad37ee70bd39990f82da2950775e
 );
 
 create table if not exists feedback (
@@ -45,5 +49,25 @@ select * from usuario;
 select * from contato;
 select * from feedback;
 
+<<<<<<< HEAD
 select musicaVotada, count(musicaVotada) from usuario
 	group by musicaVotada;
+=======
+insert into usuario values
+(null,'Carlos','carlos@gmail.com',sha2('12345678',256),1),
+(null,'Eduardo','eduardo@gmail.com',sha2('12345678',256),1),
+(null,'Oliveira','oliveira@gmail.com',sha2('12345678',256),2),
+(null,'Possoni','possoni@gmail.com',sha2('12345678',256),3),
+(null,'Yago','yago@gmail.com',sha2('12345678',256),2),
+(null,'Mateus','mateus@gmail.com',sha2('12345678',256),4),
+(null,'Giovana','giovana@gmail.com',sha2('12345678',256),2),
+(null,'Lucas','lucas@gmail.com',sha2('12345678',256),3),
+(null,'Fernando','fernando@gmail.com',sha2('12345678',256),4),
+(null,'Sophia','sophia@gmail.com',sha2('12345678',256),2),
+(null,'Paty','paty@gmail.com',sha2('12345678',256),1),
+(null,'Murilo','murilo@gmail.com',sha2('12345678',256),1),
+(null,'Ana','ana@gmail.com',sha2('12345678',256),1);
+
+select count(musicaVotada) from usuario
+	group by musicaVotada;
+>>>>>>> 4ecb3bcce006ad37ee70bd39990f82da2950775e
