@@ -7,7 +7,7 @@ router.put("/votar/:musica/:id", function (req, res) {
     votoController.votar(req, res);
 });
 
-router.get("/musicasVotadas/", function (req, res) {
+router.get("/buscarVotos/", function (req, res) {
     votoController.buscarVotos(req, res);
 });
 

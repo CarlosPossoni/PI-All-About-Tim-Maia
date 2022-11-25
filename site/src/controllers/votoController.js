@@ -4,8 +4,6 @@ function votar(req, res) {
     var id = req.params.id;
     var musica = req.params.musica;
 
-    console.log(`Recuperando as musicas`);
-
     votoModel.votar(musica, id).then(function (resultado) {
         res.json(resultado);
     }).catch(function (erro) {

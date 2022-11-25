@@ -1,15 +1,13 @@
 var database = require("../database/config");
 
 function votar(musica,id) {
-
-    instrucaoSql = `UPDATE usuario SET musicaVotada = '${musica}' WHERE id = ${id};`;
-
+    instrucaoSql = `UPDATE usuario SET musicaVotada = '${musica}', jaVotou = 1 WHERE id = ${id};`;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
 
 function buscarVotos() {
-    instruçãoSql = `select musicaVotada as 'nome', count(musicaVotada) as 'qntVoto' from usuario
+    instrucaoSql = `select musicaVotada as 'nome', count(musicaVotada) as 'qntVoto' from usuario
 	                group by musicaVotada;`;
     console.log(`EXECUTEI ISSO ${instrucaoSql}`);
     return database.executar(instrucaoSql); 

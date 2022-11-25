@@ -1,19 +1,21 @@
+-- CRIAÇÃO DO BANCO
 create database if not exists allabout;
 use allabout;
 
+-- CRIAÇÃO DAS TABELAS NECESSÁRIAS PARA FUNCIONAMENTO DO PROJETO
+-- CRIAÇÃO DA TABELA DE USUÁRIO NO QUAL RECEBERÁ EMAIL E SENHA(CRIPTOGRAFADA) E
+-- QUAL MÚSICA SERÁ VOTADA
 create table if not exists usuario (
 id int primary key auto_increment,
 nome varchar(30) not null,
 email varchar(256) unique not null,
 senha varchar(70) not null,
 musicaVotada varchar(45),
-<<<<<<< HEAD
 jaVotou char(1) default 0
-=======
-jaVotou char(2)
->>>>>>> 4ecb3bcce006ad37ee70bd39990f82da2950775e
 );
 
+-- CRIAÇÃO DA TABELA DE FEEDBACK, DA QUAL UM USUÁRIO FAZZ UNICA E SOMENTE UM FEEDBACK
+-- E UM FEEDBACK É UNICA E SOMENTE DE UM USUÁRIO
 create table if not exists feedback (
 id int primary key auto_increment,
 nota tinyint not null,
@@ -22,52 +24,43 @@ fkUsuario int,
 	foreign key (fkUsuario) references usuario(id)
 );
 
+-- TABELA DE CONTATO QUE RECEBERÁ SUGESTÕES, REPORTS E ETC
+-- SEM A NECESSIDADE DE ESTAR LOGADO OU DE UM CADASTRO
 create table if not exists contato (
 id int primary key auto_increment,
 email varchar(256) not null,
-mensagem varchar(512) not null,
+mensagem varchar(512) not null
+);
+
+-- CRIAÇÃO DA TABELA DE COMENTÁRIO QUE RECEBERÁ A MENSAGEM E DE QUAL USUÁRIO É AQUELA MENSAGEM
+-- NO QUAL UM COMENTÁRIO É DE UM USUÁRIO E UM USUÁRIO FAZ QUANTOS COMENTÁRIO QUISER
+create table if not exists comentario (
+id int primary key auto_increment,
+mensagem varchar(512),
 fkUsuario int,
 	foreign key (fkUsuario) references usuario(id)
 );
 
 insert into usuario values
-(null,'Carlos','carlos@gmail.com',sha2('12345678',256),'Bom Senso'),
-(null,'Eduardo','eduardo@gmail.com',sha2('12345678',256),'Bom Senso'),
-(null,'Oliveira','oliveira@gmail.com',sha2('12345678',256),'Universo Em Densencanto'),
-(null,'Possoni','possoni@gmail.com',sha2('12345678',256),'Rarional Culture'),
-(null,'Yago','yago@gmail.com',sha2('12345678',256),'Universo Em Densencanto'),
-(null,'Mateus','mateus@gmail.com',sha2('12345678',256),'Imunização Racional'),
-(null,'Giovana','giovana@gmail.com',sha2('12345678',256),'Universo Em Densencanto'),
-(null,'Lucas','lucas@gmail.com',sha2('12345678',256),'Rarional Culture'),
-(null,'Fernando','fernando@gmail.com',sha2('12345678',256),'Imunização Racional'),
-(null,'Sophia','sophia@gmail.com',sha2('12345678',256),'Universo Em Densencanto'),
-(null,'Paty','paty@gmail.com',sha2('12345678',256),'Bom Senso'),
-(null,'Murilo','murilo@gmail.com',sha2('12345678',256),'Bom Senso'),
-(null,'Ana','ana@gmail.com',sha2('12345678',256),'Bom Senso');
+(null,'Carlos','carlos@gmail.com',sha2('12345678',256),'Bom Senso',1),
+(null,'Eduardo','eduardo@gmail.com',sha2('12345678',256),'Bom Senso',1),
+(null,'Oliveira','oliveira@gmail.com',sha2('12345678',256),'Universo Em Densencanto',1),
+(null,'Possoni','possoni@gmail.com',sha2('12345678',256),'Rarional Culture',1),
+(null,'Yago','yago@gmail.com',sha2('12345678',256),'Universo Em Densencanto',1),
+(null,'Mateus','mateus@gmail.com',sha2('12345678',256),'Imunização Racional',1),
+(null,'Giovana','giovana@gmail.com',sha2('12345678',256),'Universo Em Densencanto',1),
+(null,'Lucas','lucas@gmail.com',sha2('12345678',256),'Rarional Culture',1),
+(null,'Fernando','fernando@gmail.com',sha2('12345678',256),'Imunização Racional',1),
+(null,'Sophia','sophia@gmail.com',sha2('12345678',256),'Universo Em Densencanto',1),
+(null,'Paty','paty@gmail.com',sha2('12345678',256),'Bom Senso',1),
+(null,'Murilo','murilo@gmail.com',sha2('12345678',256),'Bom Senso',1),
+(null,'Ana','ana@gmail.com',sha2('12345678',256),'Bom Senso',1);
 
 select * from usuario;
 select * from contato;
 select * from feedback;
-
-<<<<<<< HEAD
-select musicaVotada, count(musicaVotada) from usuario
+desc usuario;
+select musicaVotada as 'nome', count(musicaVotada) as 'qntVoto' from usuario
 	group by musicaVotada;
-=======
-insert into usuario values
-(null,'Carlos','carlos@gmail.com',sha2('12345678',256),1),
-(null,'Eduardo','eduardo@gmail.com',sha2('12345678',256),1),
-(null,'Oliveira','oliveira@gmail.com',sha2('12345678',256),2),
-(null,'Possoni','possoni@gmail.com',sha2('12345678',256),3),
-(null,'Yago','yago@gmail.com',sha2('12345678',256),2),
-(null,'Mateus','mateus@gmail.com',sha2('12345678',256),4),
-(null,'Giovana','giovana@gmail.com',sha2('12345678',256),2),
-(null,'Lucas','lucas@gmail.com',sha2('12345678',256),3),
-(null,'Fernando','fernando@gmail.com',sha2('12345678',256),4),
-(null,'Sophia','sophia@gmail.com',sha2('12345678',256),2),
-(null,'Paty','paty@gmail.com',sha2('12345678',256),1),
-(null,'Murilo','murilo@gmail.com',sha2('12345678',256),1),
-(null,'Ana','ana@gmail.com',sha2('12345678',256),1);
 
-select count(musicaVotada) from usuario
-	group by musicaVotada;
->>>>>>> 4ecb3bcce006ad37ee70bd39990f82da2950775e
+update usuario set musicaVotada = null, jaVotou = 0 where id = 14;

@@ -17,7 +17,7 @@
     <title>All About</title>
 </head>
 
-<body onload="plotarMusicas()">
+<body onload="plotarMusicas(),obterDadosGrafico()">
     <header>
         <div class="container">
             <a class="img-logo" href="#"><img src="assets/img/LOGO_Branca.png" alt="Logo"></a>
@@ -249,26 +249,15 @@
 
     name_user.innerHTML = sessionStorage.NOME_USUARIO;
 
-    // O gráfico é construído com três funções:
-    // 1. obterDadosGrafico -> Traz dados do Banco de Dados para montar o gráfico da primeira vez
-    // 2. plotarGrafico -> Monta o gráfico com os dados trazidos e exibe em tela
-    // 3. atualizarGrafico -> Atualiza o gráfico, trazendo novamente dados do Banco
-
-    // Esta função *obterDadosGrafico* busca os últimos dados inseridos em tabela de medidas.
-    // para, quando carregar o gráfico da primeira vez, já trazer com vários dados.
-    // A função *obterDadosGrafico* também invoca a função *plotarGrafico*
-
-    //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
-    //     Para ajustar o "select", ajuste o comando sql em src/models
 
     function verificaVoto() {
         var id = sessionStorage.ID_USUARIO
-
+        var jaVoutou = 0
         fetch(`/voto/verificar/${id}`, {cache: 'no-store'}).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                    jaVotou = +resposta[0].jaVotou
+                    // console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    jaVotou = resposta[0].jaVotou
                     if (jaVotou = 1) {
                         optionsMusic.style.display = `none`
                     }
@@ -308,7 +297,7 @@
 
     function obterDadosGrafico() {
 
-        fetch(`/voto/musicasVotadas/`, { cache: 'no-store' }).then(function (response) {
+        fetch(`/voto/buscarVotos/`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
@@ -327,8 +316,11 @@
     // Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
     // A função *plotarGrafico* também invoca a função *atualizarGrafico*
     function plotarGrafico(resposta) {
+
         console.log('iniciando plotagem do gráfico...');
+
         chart.style.display = `block`
+
         const data = {
             datasets: [{
                 label: 'Votção',
@@ -349,8 +341,8 @@
         // Inserindo valores recebidos em estrutura para plotar o gráfico
         for (i = 0; i < resposta.length; i++) {
             var registro = resposta[i];
-            dados.datasets[0].data.push(registro.quantidade);
-            dados.datasets[1].data.push(registro.musica);
+            data.datasets[0].data.push(registro.jaVotou);
+            // data.datasets[1].data.push(registro.qntVoto);
         }
 
         console.log('----------------------------------------------')

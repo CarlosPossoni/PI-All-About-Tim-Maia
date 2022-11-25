@@ -171,8 +171,8 @@
                     <span>E-mail ou senha incorretos!</span>
                 </div>
                 <button id="btn-login" class="button-modal">Entrar</button>
-                <div id="load" class="load"></div>
-                <div id="return_div" class="register-sucess"></div>
+                <div id="load_login" class="load"></div>
+                <div id="back_div" class="register-sucess"></div>
             </div>
         </div>
     </div>
@@ -212,8 +212,8 @@
                     <span>As senhas devem ser iguais</span>
                 </div>
                 <button id="btn-register" class="button-modal">Cadastrar</button>
-                <div id="load" class="load"></div>
-                <div id="back_div" class="register-sucess"></div>
+                <div id="load_register" class="load"></div>
+                <div id="back_div_register" class="register-sucess"></div>
             </div>
         </div>
     </div>
@@ -255,56 +255,49 @@
         var validEmail = emailRegister.value.indexOf('@') && (emailRegister.value.endsWith(`.com`) || emailRegister.value.endsWith(`.com.br`))
         var validPass = (keywordRegister.value).length >= 8
         var validPassConfirmation = keywordRegister.value == keywordConfirmation.value
-        var errorValidName = true
-        var errorValidEmail = true
-        var errorValidPass = true
-        var errorValidPassConf = true
-
+        
+        var error = true
         var errorName = document.getElementById(`textErrorName`)
         var errorEmail = document.getElementById(`textErrorEmail`)
         var errorPass = document.getElementById(`textErrorPass`)
         var errorConf = document.getElementById(`textErrorPassConf`)
 
         if (validName) {
-            errorValidName = false
+            error = false
             errorName.classList.remove(`text-error-true`)
         } else {
-            errorValidName = true
             errorName.classList.add(`text-error-true`)
         }
 
         if (validEmail) {
-            errorValidEmail = false
+            error = false
             errorEmail.classList.remove(`text-error-true`)
         } else {
-            errorValidEmail = true
             errorEmail.classList.add(`text-error-true`)
         }
 
         if (validPass) {
-            errorValidPass = false
+            error = false
             errorPass.classList.remove(`text-error-true`)
         } else {
-            errorValidPass = true
             errorPass.classList.add(`text-error-true`)
         }
 
         if (validPassConfirmation) {
-            errorValidPassConf = false
+            error = false
             errorConf.classList.remove(`text-error-true`)
         } else {
-            errorValidPassConf = true
             errorConf.classList.add(`text-error-true`)
         }
 
-        if (errorValidName == false && errorValidEmail == false && errorValidPass == false && errorValidPassConf == false) {
+        if (error) {
             cadastrar()
         }
 
     }
 
     function cadastrar() {
-    aguardar();
+    aguardarCadastro();
 
     //Recupere o valor da nova input pelo nome do id
     // Agora vá para o método fetch logo abaixo
@@ -331,10 +324,9 @@
         console.log('estou no then do cadastrar!');
 
         if (resposta.ok) {
-            return_div.style.display = "block";
-            console.log('ENTREI NO IF DO THEN');
+            back_div_register.style.display = "block";
 
-            return_div.innerHTML = "Cadastro realiado com sucesso! Aguarde redirecionando para tela de login";
+            back_div_register.innerHTML = "Cadastro realiado com sucesso! Aguarde redirecionando para tela de login";
 
             setTimeout(() => {
                 console.log('ENTREI NO SETTIMEOUT');
@@ -348,13 +340,13 @@
             }, "2000")
 
             limparFormulario();
-            // finalizarAguardar();
+            finalizarAguardarCadastro();
         } else {
             throw ("Houve um erro ao tentar realizar o cadastro!");
         }
     }).catch(function (resposta) {
         console.log(`#ERRO: ${resposta}`);
-        // finalizarAguardar();
+        finalizarAguardarCadastro();
     });
 
     return false;
@@ -362,7 +354,7 @@
 
 
     function entrar() {
-        aguardar();
+        aguardarLogin();
 
         const errorLogin = document.getElementById(`textErrorLogin`)
 
@@ -372,7 +364,7 @@
 
         if (emailVar == "" || senhaVar == "") {
             errorLogin.classList.add(`text-error-true`)
-            finalizarAguardar();
+            finalizarAguardarLogin();
             return false;
         }
 
@@ -414,7 +406,7 @@
 
                 resposta.text().then(texto => {
                     console.error(texto);
-                    finalizarAguardar(texto);
+                    finalizarAguardarLogin(texto);
                 });
             }
 

@@ -17,16 +17,31 @@ function limparSessao() {
     window.location = "../index.html";
 }
 
-function aguardar() {
-    var divAguardar = document.getElementById("load");
+function aguardarCadastro() {
+    var divAguardar = document.getElementById("load_register");
     divAguardar.style.display = "block";
 }
 
-function finalizarAguardar(texto) {
-    var divAguardar = document.getElementById("load");
+function aguardarLogin() {
+    var divAguardar = document.getElementById("load_login");
+    divAguardar.style.display = "block";
+}
+
+function finalizarAguardarCadastro(texto) {
+    var divAguardar = document.getElementById("load_register");
     divAguardar.style.display = "none";
     
-    var divErrosLogin = document.getElementById("return_div");
+    var divErrosLogin = document.getElementById("back_div");
+    divErrosLogin.style.display = "block";
+    if (texto) {
+        divErrosLogin.innerHTML = texto;
+    }
+}
+function finalizarAguardarLogin(texto) {
+    var divAguardar = document.getElementById("load_login");
+    divAguardar.style.display = "none";
+    
+    var divErrosLogin = document.getElementById("back_div");
     divErrosLogin.style.display = "block";
     if (texto) {
         divErrosLogin.innerHTML = texto;
