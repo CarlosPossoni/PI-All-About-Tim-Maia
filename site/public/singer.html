@@ -160,8 +160,7 @@
                         Desencanto</button>
                     <button id="music3" class="button button-3" onclick="votar(`Imunização Racional`)">Imunização
                         Racional</button>
-                    <button id="music4" class="button button-4" onclick="votar(`Contacto Com o Mundo
-                    Racional`)">Contacto Com o Mundo
+                    <button id="music4" class="button button-4" onclick="votar(`Contacto Com o Mundo Racional`)">Contacto Com o Mundo
                         Racional</button>
                 </div>
             </div>
@@ -187,7 +186,7 @@
                                 src="assets/img/youtube.png" alt="Youtube" class="social"></a>
                         <a href="https://www.linkedin.com/" target="_blank" class="social"><img
                                 src="assets/img/linkedin.png" alt="Linkedin" class="social"></a>
-                    </div>
+                    </div>  
                 </div>
                 <div class="professional-contact">
                     <h2>Contato Profissional</h2>
@@ -215,6 +214,8 @@
 </html>
 <script>
 
+    name_user.innerHTML = sessionStorage.NOME_USUARIO;
+
     var musicas = [{
         tituloMusica: `Bom Senso`,
     },
@@ -229,11 +230,8 @@
     }]
 
     function plotarMusicas() {
-
         for (var index = 0; index < musicas.length; index++) {
-
             var musica = musicas[index]
-
             listMusic.innerHTML += `
             <div class="box-music-${[index]}">
                 <div class="legend-box">
@@ -247,8 +245,6 @@
         }
     }
 
-    name_user.innerHTML = sessionStorage.NOME_USUARIO;
-
     // O gráfico é construído com três funções:
     // 1. obterDadosGrafico -> Traz dados do Banco de Dados para montar o gráfico da primeira vez
     // 2. plotarGrafico -> Monta o gráfico com os dados trazidos e exibe em tela
@@ -260,7 +256,6 @@
 
     //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
     //     Para ajustar o "select", ajuste o comando sql em src/models
-
     function verificaVoto() {
         var id = sessionStorage.ID_USUARIO
 
@@ -280,7 +275,6 @@
 
     function votar(musica) {
         var id = sessionStorage.ID_USUARIO
-
         fetch(`/voto/votar/${musica}/${id}`, {
             method: "PUT",
             headers: {
@@ -303,7 +297,6 @@
     }
 
     function obterDadosGrafico() {
-
         fetch(`/voto/votar/`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
