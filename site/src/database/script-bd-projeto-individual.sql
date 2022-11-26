@@ -44,14 +44,14 @@ fkUsuario int,
 insert into usuario values
 (null,'Carlos','carlos@gmail.com',sha2('12345678',256),'Bom Senso',1),
 (null,'Eduardo','eduardo@gmail.com',sha2('12345678',256),'Bom Senso',1),
-(null,'Oliveira','oliveira@gmail.com',sha2('12345678',256),'Universo Em Densencanto',1),
-(null,'Possoni','possoni@gmail.com',sha2('12345678',256),'Rarional Culture',1),
-(null,'Yago','yago@gmail.com',sha2('12345678',256),'Universo Em Densencanto',1),
+(null,'Oliveira','oliveira@gmail.com',sha2('12345678',256),'Universo Em Desencanto',1),
+(null,'Possoni','possoni@gmail.com',sha2('12345678',256),'Contacto Com o Mundo Racional',1),
+(null,'Yago','yago@gmail.com',sha2('12345678',256),'Universo Em Desencanto',1),
 (null,'Mateus','mateus@gmail.com',sha2('12345678',256),'Imunização Racional',1),
-(null,'Giovana','giovana@gmail.com',sha2('12345678',256),'Universo Em Densencanto',1),
-(null,'Lucas','lucas@gmail.com',sha2('12345678',256),'Rarional Culture',1),
+(null,'Giovana','giovana@gmail.com',sha2('12345678',256),'Universo Em Desencanto',1),
+(null,'Lucas','lucas@gmail.com',sha2('12345678',256),'Contacto Com o Mundo Racional',1),
 (null,'Fernando','fernando@gmail.com',sha2('12345678',256),'Imunização Racional',1),
-(null,'Sophia','sophia@gmail.com',sha2('12345678',256),'Universo Em Densencanto',1),
+(null,'Sophia','sophia@gmail.com',sha2('12345678',256),'Universo Em Desencanto',1),
 (null,'Paty','paty@gmail.com',sha2('12345678',256),'Bom Senso',1),
 (null,'Murilo','murilo@gmail.com',sha2('12345678',256),'Bom Senso',1),
 (null,'Ana','ana@gmail.com',sha2('12345678',256),'Bom Senso',1);
@@ -60,7 +60,8 @@ select * from usuario;
 select * from contato;
 select * from feedback;
 desc usuario;
-select musicaVotada as 'nome', count(musicaVotada) as 'qntVoto' from usuario
-	group by musicaVotada;
+
+select musicaVotada,count(musicaVotada) as qntVoto from usuario
+	group by musicaVotada order by musicaVotada;
 
 update usuario set musicaVotada = null, jaVotou = 0 where id = 14;

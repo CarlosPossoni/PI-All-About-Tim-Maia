@@ -17,7 +17,7 @@
     <title>All About</title>
 </head>
 
-<body onload="plotarMusicas(),obterDadosGrafico()">
+<body onload="plotarMusicas(),verificaVoto()">
     <header>
         <div class="container">
             <a class="img-logo" href="#"><img src="assets/img/LOGO_Branca.png" alt="Logo"></a>
@@ -139,12 +139,13 @@
                         <div class="legend-box">
                             <img src="assets/img/album.png">
                             <div class="subtitle">
-                                <p>Bom Senso</p>
+                                <p><b>Bom Senso</b></p>
                                 Álbum: Racional V1 - 1975
+                                <p>Minha nota: <b>10/10</b></p>
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
@@ -160,12 +161,18 @@
                         Desencanto</button>
                     <button id="music3" class="button button-3" onclick="votar(`Imunização Racional`)">Imunização
                         Racional</button>
-                    <button id="music4" class="button button-4" onclick="votar(`Contacto Com o Mundo
-                    Racional`)">Contacto Com o Mundo
+                    <button id="music4" class="button button-4"
+                        onclick="votar(`Contacto Com o Mundo Racional`)">Contacto Com o Mundo
                         Racional</button>
                 </div>
             </div>
-            <div class="chart-js">
+            <div id="analytics" class="analytics">
+                <h2 class="title-votation" style="display: inline;">Música Votadas por usuário</h2>
+                <p class="sub-analytics">Dos <span id="numberUsers">X</span> Usuários do site que votaram :</p>
+                <div id="text_analytics" class="text-analytics">
+                </div>
+            </div>
+            <div id="chart_JS" class="chart-js" style="width: 50%;">
                 <canvas id="chart"></canvas>
             </div>
         </div>
@@ -216,16 +223,22 @@
 <script>
 
     var musicas = [{
-        tituloMusica: `Bom Senso`,
+        tituloMusica: `Rational Culture`,
+        nota: 8.5
     },
     {
         tituloMusica: `Universo Em Densencanto`,
-    },
-    {
-        tituloMusica: `Rarional Culture`,
+        nota: 8
     },
     {
         tituloMusica: `Imunização Racional`,
+        nota: 9
+
+    },
+    {
+        tituloMusica: `Contacto Com o Mundo Racional`,
+        nota: 9
+
     }]
 
     function plotarMusicas() {
@@ -239,8 +252,9 @@
                 <div class="legend-box">
                     <img class="image-box" src="assets/img/album.png">
                     <div class="subtitle">
-                        <p>${musica.tituloMusica}</p>
+                        <p><b>${musica.tituloMusica}</b></p>
                         Álbum: Racional V1 - 1975
+                        <p>Minha nota:<b> ${musica.nota}/10</b></p>
                     </div>
                 </div>
             </div>`;
@@ -253,13 +267,14 @@
     function verificaVoto() {
         var id = sessionStorage.ID_USUARIO
         var jaVoutou = 0
-        fetch(`/voto/verificar/${id}`, {cache: 'no-store'}).then(function (response) {
+        fetch(`/voto/verificar/${id}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
                     // console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                     jaVotou = resposta[0].jaVotou
-                    if (jaVotou = 1) {
+                    if (jaVotou == 1) {
                         optionsMusic.style.display = `none`
+                        obterDadosGrafico()
                     }
                 });
             } else {
@@ -317,47 +332,59 @@
     // A função *plotarGrafico* também invoca a função *atualizarGrafico*
     function plotarGrafico(resposta) {
 
-        console.log('iniciando plotagem do gráfico...');
+        analytics.style.display = `flex`
+        optionsMusic.style.display = `none`
+        chart_JS.style.display = `block`
 
-        chart.style.display = `block`
+        var soma = (resposta[0].qntVoto + resposta[1].qntVoto + resposta[2].qntVoto + resposta[3].qntVoto)
+        
+        var musica0 = resposta[0].qntVoto
+        var musica1 = resposta[1].qntVoto
+        var musica2 = resposta[2].qntVoto
+        var musica3 = resposta[3].qntVoto
 
-        const data = {
+        numberUsers.innerHTML = `${soma}`
+
+        text_analytics.innerHTML = `
+            <p><span id="numberMusic1">${(musica0/soma*100).toFixed(0)}%</span> votaram em Bom Senso</p>
+            <p><span id="numberMusic4">${(musica1/soma*100).toFixed(0)}%</span> votaram em Contacto Com o Mundo Racional</p>  
+            <p><span id="numberMusic3">${(musica2/soma*100).toFixed(0)}%</span> votaram em Imunização Racional</p>
+            <p><span id="numberMusic2">${(musica3/soma*100).toFixed(0)}%</span> votaram em Universo Em Desencanto</p>    
+        `
+
+        const dados = {
+            labels: [],
             datasets: [{
-                label: 'Votção',
+                label: [],
                 backgroundColor: [
                     'rgb(132, 160, 131)',
-                    'rgb(243, 101, 34)',
+                    'rgb(254,229,90)',
                     'rgb(99, 115, 144)',
-                    'rgb(254,229,90)'
+                    'rgb(243, 101, 34)'
                 ],
-                hoverOffset: 4
-            }]
+                hoverOffset: 4,
+                data: []
+            }],
         };
 
-        console.log('----------------------------------------------')
-        console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
-        console.log(resposta)
-
-        // Inserindo valores recebidos em estrutura para plotar o gráfico
         for (i = 0; i < resposta.length; i++) {
             var registro = resposta[i];
-            data.datasets[0].data.push(registro.jaVotou);
-            // data.datasets[1].data.push(registro.qntVoto);
+            dados.labels.push(registro.nome)
+            dados.datasets[0].data.push(registro.qntVoto);
         }
 
-        console.log('----------------------------------------------')
-        console.log('O gráfico será plotado com os respectivos valores:')
-        console.log('Dados:')
-        console.log(dados.datasets)
-        console.log('----------------------------------------------')
-
-        // Criando estrutura para plotar gráfico - config
         const config = {
             type: 'doughnut',
-            data: data,
+            data: dados,
+            options: {
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                }
+            }
         };
 
-        // Adicionando gráfico criado em div na tela
         const chartJs = new Chart(
             document.getElementById('chart'),
             config

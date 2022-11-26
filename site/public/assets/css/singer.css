@@ -113,6 +113,7 @@ header .list {
 .image-box {
     width: 100px !important;
     border-radius: 10px;
+    margin-bottom: 1rem !important;
 }
 
 .legend-box img {
@@ -211,7 +212,7 @@ header .list {
 
 
 .container-chart {
-    padding-top: 4rem;
+    padding: 2rem 0;
     display: flex;
     justify-content: space-around;
     height: 47rem;
@@ -221,4 +222,25 @@ header .list {
     transition: 0.3;
     width: 40rem;
     display: none;
+}
+
+.analytics {
+    margin: 0 auto;
+    display: none;
+    flex-direction: column;
+    align-self: center;
+    width: 40%;
+    font-size: 22px;
+}
+
+.sub-analytics {
+    font-weight: 500;
+    font-size: 25px;
+    margin: 15px 0;
+}
+
+.text-analytics {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }

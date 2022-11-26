@@ -16,15 +16,16 @@
 </head>
 
 <body>
+
     <header>
         <div class="container">
             <a class="img-logo" href="#"><img src="assets/img/LOGO_Branca.png" alt="Logo"></a>
             <div class="navbar">
                 <ul class="list">
                     <li>
-                        <span class="options" id="open-login">Login</span>
+                        <span class="options" id="open_login">Login</span>
                         <span class="bar">|</span>
-                        <span class="options" id="open-register">Cadastre-se</span>
+                        <span class="options" id="open_register">Cadastre-se</span>
                     </li>
                 </ul>
             </div>
@@ -99,7 +100,7 @@
 
     <section class="forms">
         <div class="container">
-            <h2 class="sub-title-form">Encontrou algum erro ? Tem alguma segestão ou dúvida? Nos avise!</h2>
+            <h2 class="sub-title-form">Encontrou algum erro ? Tem alguma sugestão ou dúvida? Nos avise!</h2>
             <div class="container-forms">
                 <span class="label">Nome</span>
                 <input type="text" placeholder="Seu nome aqui" class="input">
@@ -217,15 +218,16 @@
             </div>
         </div>
     </div>
+
 </body>
 
 </html>
 <script>
 
-    const openLogin = document.getElementById(`open-login`)
+    const openLogin = document.getElementById(`open_login`)
     openLogin.addEventListener(`click`, showModalLogin)
 
-    const openRegister = document.getElementById(`open-register`)
+    const openRegister = document.getElementById(`open_register`)
     openRegister.addEventListener(`click`, showModalRegister)
 
     function showModalLogin() {
@@ -263,30 +265,30 @@
         var errorConf = document.getElementById(`textErrorPassConf`)
 
         if (validName) {
-            error = false
             errorName.classList.remove(`text-error-true`)
         } else {
+            error = false
             errorName.classList.add(`text-error-true`)
         }
 
         if (validEmail) {
-            error = false
             errorEmail.classList.remove(`text-error-true`)
         } else {
+            error = false
             errorEmail.classList.add(`text-error-true`)
         }
 
         if (validPass) {
-            error = false
             errorPass.classList.remove(`text-error-true`)
         } else {
+            error = false
             errorPass.classList.add(`text-error-true`)
         }
 
         if (validPassConfirmation) {
-            error = false
             errorConf.classList.remove(`text-error-true`)
         } else {
+            error = false
             errorConf.classList.add(`text-error-true`)
         }
 
