@@ -64,4 +64,5 @@ desc usuario;
 select musicaVotada,count(musicaVotada) as qntVoto from usuario
 	group by musicaVotada order by musicaVotada;
 
-update usuario set musicaVotada = null, jaVotou = 0 where id = 14;
+select count(musicaVotada) from usuario
+	group by musicaVotada;
