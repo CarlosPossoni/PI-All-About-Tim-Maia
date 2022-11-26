@@ -11,7 +11,7 @@ nome varchar(30) not null,
 email varchar(256) unique not null,
 senha varchar(70) not null,
 musicaVotada varchar(45),
-jaVotou char(1) default 0
+jaVotou char(1)
 );
 
 -- CRIAÇÃO DA TABELA DE FEEDBACK, DA QUAL UM USUÁRIO FAZZ UNICA E SOMENTE UM FEEDBACK
