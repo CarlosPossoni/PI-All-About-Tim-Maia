@@ -24,12 +24,16 @@
             <div class="navbar">
                 <ul class="list">
                     <li>
+                        <span onclick="limparSessao()" id="logout" class="options">Sair</span>
+                        <span class="name_user">|</span>    
+                        <a class="options" href="feedback.html">Feedback</a>
+                        <span class="name_user">|</span>
+                        <a class="options" href="playlist.html">Playlist</a>
+                        <span class="name_user">|</span>
                         <div class="content-list">
                             <span class="name_user">Olá, <span id="name_user" class="name_user">NomeUsuário</span>
                             </span>
                         </div>
-                        <span class="name_user">|</span>
-                        <span onclick="limparSessao()" id="logout" class="options">Sair</span>
                     </li>
                 </ul>
             </div>
@@ -222,6 +226,8 @@
 </html>
 <script>
 
+    name_user.innerHTML = sessionStorage.NOME_USUARIO;
+
     var musicas = [{
         tituloMusica: `Rational Culture`,
         nota: 8.5
@@ -250,7 +256,7 @@
             listMusic.innerHTML += `
             <div class="box-music-${[index]}">
                 <div class="legend-box">
-                    <img class="image-box" src="assets/img/album.png">
+                    <img class="image-box" src="assets/img/album-racional.png">
                     <div class="subtitle">
                         <p><b>${musica.tituloMusica}</b></p>
                         Álbum: Racional V1 - 1975
@@ -260,9 +266,6 @@
             </div>`;
         }
     }
-
-    name_user.innerHTML = sessionStorage.NOME_USUARIO;
-
 
     function verificaVoto() {
         var id = sessionStorage.ID_USUARIO
@@ -337,7 +340,7 @@
         chart_JS.style.display = `block`
 
         var soma = (resposta[0].qntVoto + resposta[1].qntVoto + resposta[2].qntVoto + resposta[3].qntVoto)
-        
+
         var musica0 = resposta[0].qntVoto
         var musica1 = resposta[1].qntVoto
         var musica2 = resposta[2].qntVoto
@@ -346,10 +349,10 @@
         numberUsers.innerHTML = `${soma}`
 
         text_analytics.innerHTML = `
-            <p><span id="numberMusic1">${(musica0/soma*100).toFixed(0)}%</span> votaram em Bom Senso</p>
-            <p><span id="numberMusic4">${(musica1/soma*100).toFixed(0)}%</span> votaram em Contacto Com o Mundo Racional</p>  
-            <p><span id="numberMusic3">${(musica2/soma*100).toFixed(0)}%</span> votaram em Imunização Racional</p>
-            <p><span id="numberMusic2">${(musica3/soma*100).toFixed(0)}%</span> votaram em Universo Em Desencanto</p>    
+            <p><span id="numberMusic1">${(musica0 / soma * 100).toFixed(0)}%</span> votaram em Bom Senso</p>
+            <p><span id="numberMusic4">${(musica1 / soma * 100).toFixed(0)}%</span> votaram em Contacto Com o Mundo Racional</p>  
+            <p><span id="numberMusic3">${(musica2 / soma * 100).toFixed(0)}%</span> votaram em Imunização Racional</p>
+            <p><span id="numberMusic2">${(musica3 / soma * 100).toFixed(0)}%</span> votaram em Universo Em Desencanto</p>    
         `
 
         const dados = {

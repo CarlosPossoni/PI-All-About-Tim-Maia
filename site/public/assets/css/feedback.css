@@ -1,0 +1,60 @@
+body {
+    /* background: linear-gradient(#222, #000);
+    background-repeat: no-repeat;
+    background-size: cover; */
+    background-color: #000;
+    font-size: 22px;
+}
+
+header {
+    border-bottom: solid 2px white;
+}
+
+header .list {
+    width: 100px;
+}
+
+.feedback .container {
+    margin-top: 7rem;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.feedback h1 {
+    font-size: 32px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    margin: 3rem auto;
+}
+
+.container-forms {
+    width: 80%;
+}
+
+textarea,
+.btn-form {
+    background: white;
+    margin: 1rem auto 4rem auto;
+}
+
+.input {
+    margin-top: 1rem;
+    background: white;
+}
+
+.btn-form {
+    width: 150px;
+    height: 50px;
+    font-size: 25px;
+}
+
+.load {
+    border: solid 7px #fff;
+}
+
+input:invalid {
+    border: red 3px solid;
+}

@@ -64,7 +64,7 @@
         <div class="container container-about-us-2">
             <div class="card card-about-us-3" style="width: 100%;">
                 <div class="text">
-                    <p>”Arte não se trata apenas de lazer ou entreterimento, mas também como uma forma de resistência,
+                    <p>”Arte não se trata apenas de lazer ou entreterimento, mas também de uma forma de resistência,
                         diversidade e liberdade de expressão.”</p>
                     <p class="text-base">Desconhecido - 2022</p>
                     </p>
@@ -74,7 +74,7 @@
     </section>
 
     <section class="singers">
-        <h2 class="singers-title">Cantores</h2>
+        <h2 class="singers-title">Cantor</h2>
         <div class="container">
             <div class="card-singer card-text">
                 <h2 class="sub-title">Tim Maia</h2>
@@ -98,17 +98,27 @@
         </div>
     </section>
 
+    <section class="youtube">
+        <div class="video">
+            <h2>Ouça "Ela Partiu" - Tim Maia versão Lo-Fi </h2>
+            <iframe class="lofi" src="https://www.youtube.com/embed/I-RgNNaF8rw" title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+        </div>
+    </section>
+
     <section class="forms">
         <div class="container">
             <h2 class="sub-title-form">Encontrou algum erro ? Tem alguma sugestão ou dúvida? Nos avise!</h2>
             <div class="container-forms">
                 <span class="label">Nome</span>
-                <input type="text" placeholder="Seu nome aqui" class="input">
+                <input id="iptNome" type="text" placeholder="Seu nome aqui" class="input">
                 <span class="label">E-mail</span>
-                <input type="email" placeholder="seu_email@aqui.com" class="input">
+                <input id="iptEmail" type="email" placeholder="seu_email@aqui.com" class="input">
                 <span class="label">Menssagem</span>
-                <textarea id="" cols="100" rows="10" placeholder="Sua mensagem aqui"></textarea>
-                <button id="btn-form" class="btn-form">Enviar</button>
+                <textarea id="iptMenssage" cols="100" rows="10" placeholder="Sua mensagem aqui"></textarea>
+                <button id="btn-form" class="btn-form" onclick="report()">Enviar</button>
             </div>
         </div>
     </section>
@@ -257,7 +267,7 @@
         var validEmail = emailRegister.value.indexOf('@') && (emailRegister.value.endsWith(`.com`) || emailRegister.value.endsWith(`.com.br`))
         var validPass = (keywordRegister.value).length >= 8
         var validPassConfirmation = keywordRegister.value == keywordConfirmation.value
-        
+
         var error = true
         var errorName = document.getElementById(`textErrorName`)
         var errorEmail = document.getElementById(`textErrorEmail`)
@@ -299,59 +309,59 @@
     }
 
     function cadastrar() {
-    aguardarCadastro();
+        aguardarCadastro();
 
-    //Recupere o valor da nova input pelo nome do id
-    // Agora vá para o método fetch logo abaixo
-    var nomeVar = nameRegister.value;
-    var emailVar = emailRegister.value;
-    var senhaVar = keywordRegister.value;
+        //Recupere o valor da nova input pelo nome do id
+        // Agora vá para o método fetch logo abaixo
+        var nomeVar = nameRegister.value;
+        var emailVar = emailRegister.value;
+        var senhaVar = keywordRegister.value;
 
-    // Enviando o valor da nova input
-    fetch("/usuarios/cadastrar", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            // crie um atributo que recebe o valor recuperado aqui
-            // Agora vá para o arquivo routes/usuario.js
-            nomeServer: nomeVar,
-            emailServer: emailVar,
-            senhaServer: senhaVar
-        })
-    }).then(function (resposta) {
+        // Enviando o valor da nova input
+        fetch("/usuarios/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                nomeServer: nomeVar,
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
 
-        console.log("resposta: ", resposta);
-        console.log('estou no then do cadastrar!');
+            console.log("resposta: ", resposta);
+            console.log('estou no then do cadastrar!');
 
-        if (resposta.ok) {
-            back_div_register.style.display = "block";
+            if (resposta.ok) {
+                back_div_register.style.display = "block";
 
-            back_div_register.innerHTML = "Cadastro realiado com sucesso! Aguarde redirecionando para tela de login";
+                back_div_register.innerHTML = "Cadastro realiado com sucesso! Aguarde redirecionando para tela de login";
 
-            setTimeout(() => {
-                console.log('ENTREI NO SETTIMEOUT');
+                setTimeout(() => {
+                    console.log('ENTREI NO SETTIMEOUT');
 
-                const modalRegister = document.getElementById(`modal-register`)
-                modalRegister.classList.toggle(`mostrar`)
+                    const modalRegister = document.getElementById(`modal-register`)
+                    modalRegister.classList.toggle(`mostrar`)
 
-                const modalLogin = document.getElementById(`modal-login`)
-                modalLogin.classList.toggle(`mostrar`)
+                    const modalLogin = document.getElementById(`modal-login`)
+                    modalLogin.classList.toggle(`mostrar`)
 
-            }, "2000")
+                }, "2000")
 
-            limparFormulario();
+                limparFormulario();
+                finalizarAguardarCadastro();
+            } else {
+                throw ("Houve um erro ao tentar realizar o cadastro!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
             finalizarAguardarCadastro();
-        } else {
-            throw ("Houve um erro ao tentar realizar o cadastro!");
-        }
-    }).catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-        finalizarAguardarCadastro();
-    });
+        });
 
-    return false;
+        return false;
     }
 
 
@@ -417,6 +427,44 @@
         })
 
         return false;
+    }
+
+    function report() {
+
+        var id = sessionStorage.ID_USUARIO;
+
+        var corpo = {
+            nome: iptNome.value,
+            email: iptEmail.value,
+            mensagem: iptMenssage.value
+        }
+
+        fetch(`/contato/report/${id}`, {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(corpo)
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                window.alert(`Report enviado com sucesso. Em breve retornaremos o contato`);
+                iptNome.value = ``
+                iptEmail.value = ``
+                iptMenssage.value = ``
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else {
+                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+
+        return false;
+
     }
 
 </script>

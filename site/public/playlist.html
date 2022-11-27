@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="assets/img/AT.png" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/index.css">
+    <link rel="stylesheet" href="assets/css/playlist.css">
+    <script src="./js/funcoes.js"></script>
+    <title>Monte sua Playlist</title>
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+            <a class="img-logo" href="#"><img src="assets/img/LOGO_Branca.png" alt="Logo"></a>
+            <div class="navbar">
+                <ul class="list">
+                    <li>
+                        <span onclick="limparSessao()" id="logout" class="options">Sair</span>
+                        <span class="name_user">|</span>
+                        <a class="options" href="singer.html">Tim Maia</a>
+                        <span class="name_user">|</span>
+                        <div class="content-list">
+                            <span class="name_user">Olá, <span id="name_user" class="name_user">NomeUsuário</span>
+                            </span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <section class="playlist">
+        <div class="container">
+            <h2>Álbuns no spotify</h2>
+            <div class="spotify">
+                <iframe class="album"
+                    src="https://open.spotify.com/embed/album/7J9wATH6I891OTHteIWSEj?utm_source=generator"
+                    frameBorder="0" allowfullscreen=""
+                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                    loading="lazy"></iframe>
+                <iframe class="album"
+                    src="https://open.spotify.com/embed/album/7Ff0Q5oeEoVKHtxJJoXyId?utm_source=generator"
+                    frameBorder="0" allowfullscreen=""
+                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                    loading="lazy"></iframe>
+            </div>
+        </div>
+        <div id="top3" class="top3">
+            <div class="container-list ">
+                <div class="list">
+                    <div class="selectdiv">
+                        <h2>Selecione a primeira música</h2>
+                        <label>
+                            <select id="music1">
+                                <option value="Imunização Racional">Imunização Racional</option>
+                                <option value="O Grão-Mestre Varonil">O Grão-Mestre Varonil</option>
+                                <option value="Bom-Senso">Bom-Senso</option>
+                                <option value="Energia Racional">Energia Racional</option>
+                                <option value="Leia o Livro Universo em Desencanto">Leia o Livro Universo em Desencanto
+                                </option>
+                                <option value="Contacto com o Mundo Racional">Contacto com o Mundo Racional</option>
+                                <option value="Universo em Desencanto">Universo em Desencanto</option>
+                                <option value="You Don't Know What I Know">You Don't Know What I Know</option>
+                                <option value="Rational Culture">Rational Culture</option>
+                                <option value="O Descobridor Dos Sete Mares">O Descobridor Dos Sete Mares</option>
+                                <option value="Terapeutica Do Grito">Terapeutica Do Grito</option>
+                                <option value="Pecado Capital">Pecado Capital</option>
+                                <option value="Mal De Amor">Mal De Amor</option>
+                                <option value="3 Em 1">3 Em 1</option>
+                                <option value="Neves E Parques">Neves E Parques</option>
+                                <option value="Rio Mon Amour">Rio Mon Amour</option>
+                                <option value="Me De Motivo">Me De Motivo</option>
+                                <option value="Olá">Olá</option>
+                                <option value="Essa Dor Me Apanha">Essa Dor Me Apanha</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="selectdiv">
+                        <h2>Selecione a segunda música</h2>
+                        <label>
+                            <select id="music2">
+                                <option value="Imunização Racional">Imunização Racional</option>
+                                <option value="O Grão-Mestre Varonil">O Grão-Mestre Varonil</option>
+                                <option value="Bom-Senso">Bom-Senso</option>
+                                <option value="Energia Racional">Energia Racional</option>
+                                <option value="Leia o Livro Universo em Desencanto">Leia o Livro Universo em Desencanto
+                                </option>
+                                <option value="Contacto com o Mundo Racional">Contacto com o Mundo Racional</option>
+                                <option value="Universo em Desencanto">Universo em Desencanto</option>
+                                <option value="You Don't Know What I Know">You Don't Know What I Know</option>
+                                <option value="Rational Culture">Rational Culture</option>
+                                <option value="O Descobridor Dos Sete Mares">O Descobridor Dos Sete Mares</option>
+                                <option value="Terapeutica Do Grito">Terapeutica Do Grito</option>
+                                <option value="Pecado Capital">Pecado Capital</option>
+                                <option value="Mal De Amor">Mal De Amor</option>
+                                <option value="3 Em 1">3 Em 1</option>
+                                <option value="Neves E Parques">Neves E Parques</option>
+                                <option value="Rio Mon Amour">Rio Mon Amour</option>
+                                <option value="Me De Motivo">Me De Motivo</option>
+                                <option value="Olá">Olá</option>
+                                <option value="Essa Dor Me Apanha">Essa Dor Me Apanha</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="selectdiv">
+                        <h2>Selecione a terceira música</h2>
+                        <label>
+                            <select id="music3">
+                                <option value="Imunização Racional">Imunização Racional</option>
+                                <option value="O Grão-Mestre Varonil">O Grão-Mestre Varonil</option>
+                                <option value="Bom-Senso">Bom-Senso</option>
+                                <option value="Energia Racional">Energia Racional</option>
+                                <option value="Leia o Livro Universo em Desencanto">Leia o Livro Universo em Desencanto
+                                </option>
+                                <option value="Contacto com o Mundo Racional">Contacto com o Mundo Racional</option>
+                                <option value="Universo em Desencanto">Universo em Desencanto</option>
+                                <option value="You Don't Know What I Know">You Don't Know What I Know</option>
+                                <option value="Rational Culture">Rational Culture</option>
+                                <option value="O Descobridor Dos Sete Mares">O Descobridor Dos Sete Mares</option>
+                                <option value="Terapeutica Do Grito">Terapeutica Do Grito</option>
+                                <option value="Pecado Capital">Pecado Capital</option>
+                                <option value="Mal De Amor">Mal De Amor</option>
+                                <option value="3 Em 1">3 Em 1</option>
+                                <option value="Neves E Parques">Neves E Parques</option>
+                                <option value="Rio Mon Amour">Rio Mon Amour</option>
+                                <option value="Me De Motivo">Me De Motivo</option>
+                                <option value="Olá">Olá</option>
+                                <option value="Essa Dor Me Apanha">Essa Dor Me Apanha</option>
+                            </select>
+                        </label>
+                    </div>
+                </div>
+                <button class="button-record" onclick="gravar()">Gravar</button>
+            </div>
+        </div>
+    </section>
+
+    <div id="ja_votou" class="ja-votou">
+        <div class="modal-container-votou">
+            <div class="content-modal">
+                <h1>Você já criou uma playlist/top3!</h1>
+            </div>
+        </div>
+    </div>
+
+    <section class="podium">
+        <div id="class_podium" class="container-podium">
+            <h1>Sua playlist Top 3</h1>
+            <div id="cards" class="cards">
+            </div>
+    </section>
+
+</body>
+
+</html>
+<script>
+
+    window.onload = verificaPlaylist()
+
+    name_user.innerHTML = sessionStorage.NOME_USUARIO;
+
+    function gravar() {
+
+        var playlist = {
+            musica1: music1.value,
+            musica2: music2.value,
+            musica3: music3.value
+        }
+
+        var nome = sessionStorage.NOME_USUARIO;
+        var id = sessionStorage.ID_USUARIO
+
+        fetch(`/top/gravarPlaylist/${id}`, {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(playlist)
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+            if (resposta.status == 500) {
+                ja_votou.style.display = `flex`
+                setTimeout(() => {
+                    ja_votou.style.display = `none`
+                }, 3500)
+            }
+            if (resposta.ok) {
+                top3.style.display = `none`
+                verificaPlaylist()
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else {
+                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+
+        return false;
+
+    }
+
+
+    function verificaPlaylist() {
+
+        var id = sessionStorage.ID_USUARIO
+
+        fetch(`/top/verificarPlaylist/${id}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(resposta)
+                    if (resposta.length == 1) {
+                        top3.style.display = `none`
+                        class_podium.style.display = `block`
+                        plotarPodium(resposta)
+                    }
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`#Erro: ${error.message}`);
+            });
+    }
+
+    var images = [{
+        path: "assets/img/tim-cantando.png",
+        position: "Primeiro Lugar"
+    },
+    {
+        path: "assets/img/tim-home.png",
+        position: "Segundo Lugar"
+    },
+    {
+        path: "assets/img/tim-maia.jpg",
+        position: "Terceiro Lugar"
+    }
+    ]
+
+    function plotarPodium(resposta) {
+
+        var musica = [resposta[0].nomeMusica1, resposta[0].nomeMusica2, resposta[0].nomeMusica3]
+
+        for (let index = 0; index < images.length; index++) {
+            cards.innerHTML += `
+                <div class="card-${index + 1}">
+                    <img class="place-${index + 1}" src="${images[index].path}">
+                    <p>${images[index].position} / ${musica[index]}</p>
+                </div>`
+        }
+    }
+
+</script>

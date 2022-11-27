@@ -1,17 +1,135 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/index.css">
+    <link rel="stylesheet" href="assets/css/playlist.css">
     <link rel="stylesheet" href="assets/css/feedback.css">
+    <script src="./js/funcoes.js"></script>
     <title>FeedBack</title>
 </head>
 
 <body>
 
+    <header>
+        <div class="container">
+            <a class="img-logo" href="#"><img src="assets/img/LOGO_Branca.png" alt="Logo"></a>
+            <div class="navbar">
+                <ul class="list">
+                    <li>
+                        <span onclick="limparSessao()" id="logout" class="options">Sair</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <section class="feedback">
+        <div class="container">
+            <div id="forms" class="container-forms">
+                <h1>Me conte como foi sua experiência, e se você quiser um pouco sobre você 😋</h1>
+                <span class="label">Nota</span>
+                <input id="iptNota" type="number" placeholder="Sua nota aqui" class="input">
+                <span class="label">Menssagem</span>
+                <textarea id="iptMenssage" cols="100" rows="10" placeholder="Sua mensagem aqui"></textarea>
+                <button id="btn-form" class="btn-form" onclick="validation()">Enviar</button>
+            </div>
+            <div id="load" class="load"></div>
+            <div id="error"></div>
+            <div id="thankyou" class="thankyou" style="display: none;">
+                <h1>Muito obrigado por ajudar o site a crescer!
+                    <?h1>
+                <p>Seu feedback foi registrado e em breve será lido 😉</p>
+            </div>
+        </div>
+    </section>
+
 </body>
 
 </html>
+<script>
+
+    window.onload = verificaFeedback()
+
+    function verificaFeedback() {
+
+        var id = sessionStorage.ID_USUARIO
+
+        fetch(`/feedback/verificarFeedback/${id}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(resposta)
+                    if (resposta.length == 1) {
+                        forms.style.display = `none`
+                        thankyou.style.display = `block`
+                        setTimeout(() => {
+                            window.location = "singer.html";
+                        }, 5000)
+                    }
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`#Erro: ${error.message}`);
+            });
+    }
+
+    function validation() {
+        var nota = iptNota.value
+        if (nota < 0 || nota > 10) {
+            error.innerHTML = `Insira uma nota de 0 à 10`
+            setTimeout(() => {
+                error.innerHTML = ``
+            }, 4000)
+        } else {
+            send()
+        }
+    }
+
+    function send() {
+        aguardarFeedback()
+
+        var id = sessionStorage.ID_USUARIO;
+
+        var corpo = {
+            notaForm: iptNota.value,
+            mensagem: iptMenssage.value
+        }
+
+        fetch(`/feedback/publicar/${id}`, {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(corpo)
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                finalizarAguardarFeedback();
+                forms.style.display = `none`
+                thankyou.style.display = `block`
+                setTimeout(() => {
+                    window.location = "singer.html";
+                }, 5000)
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else {
+                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            finalizarAguardarFeedback();
+        });
+
+        return false;
+
+    }
+
+</script>

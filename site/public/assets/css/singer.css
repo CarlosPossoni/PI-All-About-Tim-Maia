@@ -1,6 +1,10 @@
 /* HEADER */
 header .list {
-    width: 350px;
+    width: 700px;
+}
+
+header a {
+    color: #fff;
 }
 
 .content-list {

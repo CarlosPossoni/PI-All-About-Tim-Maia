@@ -17,6 +17,11 @@ function limparSessao() {
     window.location = "../index.html";
 }
 
+function aguardarFeedback() {
+    var divAguardar = document.getElementById("load");
+    divAguardar.style.display = "block";
+}
+
 function aguardarCadastro() {
     var divAguardar = document.getElementById("load_register");
     divAguardar.style.display = "block";
@@ -27,20 +32,32 @@ function aguardarLogin() {
     divAguardar.style.display = "block";
 }
 
+function finalizarAguardarFeedback(texto) {
+    var divAguardar = document.getElementById("load");
+    divAguardar.style.display = "none";
+
+    var divErrosLogin = document.getElementById("error");
+    divErrosLogin.style.display = "block";
+    if (texto) {
+        divErrosLogin.innerHTML = texto;
+    }
+}
+
 function finalizarAguardarCadastro(texto) {
     var divAguardar = document.getElementById("load_register");
     divAguardar.style.display = "none";
-    
+
     var divErrosLogin = document.getElementById("back_div");
     divErrosLogin.style.display = "block";
     if (texto) {
         divErrosLogin.innerHTML = texto;
     }
 }
+
 function finalizarAguardarLogin(texto) {
     var divAguardar = document.getElementById("load_login");
     divAguardar.style.display = "none";
-    
+
     var divErrosLogin = document.getElementById("back_div");
     divErrosLogin.style.display = "block";
     if (texto) {
