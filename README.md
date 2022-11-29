@@ -12,7 +12,7 @@ Acesse o local do diretório /site presente neste repositório no seu terminal (
 
 O comando acima irá instalar as bibliotecas necessárias para o funcionamento do projeto. As bibliotecas a serem instaladas estão listadas no arquivo package.json então é muito importante que este não seja alterado. Será criada uma nova pasta/diretório chamado node_modules quando o comando for finalizado, que é onde as bibliotecas estão localizadas. Não altere a pasta/diretório.
 
--0-> npm start
+--> npm start
 
 O comando acima irá iniciar seu projeto e efetuar os comandos de acordo com a sua parametrização feita nos passos anteriores.
 
