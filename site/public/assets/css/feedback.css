@@ -58,3 +58,8 @@ textarea,
 input:invalid {
     border: red 3px solid;
 }
+
+.thankyou {
+    display: flex;
+    text-align: center;
+}
